@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pro Media Records</title>
+    <meta name="description" content="Official website of Pro Media Records — a global gospel and Afro-fusion music label where sound meets spirit.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -76,8 +78,17 @@
     </div>
 
     <!-- Hero -->
-    <div id="home" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative pt-24 lg:pt-0">
-        <div class="flex flex-col justify-center px-6 py-12 lg:pl-20 xl:pl-32 lg:pr-12">
+    <div id="home" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative pt-24 lg:pt-0 overflow-hidden">
+        <!-- Background Video -->
+        <div class="absolute inset-0 z-[-1] overflow-hidden bg-black before:content-[''] before:absolute before:inset-0 before:bg-black/70 before:z-10">
+            <div id="bg-video-container" class="absolute top-1/2 left-1/2 min-w-[150vw] min-h-[150vh] w-auto h-auto -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-40"></div>
+        </div>
+
+        <button id="tap-sound-btn" onclick="toggleSound()" class="absolute bottom-32 lg:bottom-12 left-6 lg:left-20 xl:left-32 z-20 flex items-center gap-2 text-xs uppercase tracking-widest text-[#a0a0a0] hover:text-white transition bg-black/50 px-5 py-3 rounded border border-[#333]">
+            <i data-lucide="volume-x" width="16" height="16"></i> <span id="tap-sound-text">Tap for Sound</span>
+        </button>
+        
+        <div class="flex flex-col justify-center px-6 py-12 lg:pl-20 xl:pl-32 lg:pr-12 pointer-events-auto z-10">
             <p class="text-[0.65rem] tracking-[0.4em] uppercase text-[#ff4e00] flex items-center gap-4 mb-8">
                 <span class="w-8 h-px bg-[#ff4e00]"></span>
                 A Global Gospel & Afro-Fusion Label
@@ -98,7 +109,7 @@
             </div>
         </div>
         
-        <div class="h-[60vh] lg:h-auto bg-[#161616] relative overflow-hidden p-2 lg:p-4">
+        <div class="h-[60vh] lg:h-auto relative overflow-hidden p-2 lg:p-4 z-10">
             <div class="grid grid-cols-2 grid-rows-2 h-full gap-2 lg:gap-4">
                 <div class="relative group cursor-pointer overflow-hidden rounded-xl row-span-2" onclick="playTrack('glory-fire')">
                     <img src="https://img.youtube.com/vi/0lB9xV77wmQ/maxresdefault.jpg" alt="Glory and Fire" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
@@ -107,18 +118,18 @@
                         <div class="text-xl font-bold text-white">Glory & Fire</div>
                     </div>
                 </div>
-                <div class="relative group cursor-pointer overflow-hidden rounded-xl" onclick="playTrack('the-word')">
-                    <img src="https://img.youtube.com/vi/WBSqVDJfVhw/maxresdefault.jpg" alt="The Word" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                <div class="relative group cursor-pointer overflow-hidden rounded-xl" onclick="playTrack('question')">
+                    <img src="https://img.youtube.com/vi/WBSqVDJfVhw/maxresdefault.jpg" alt="Question" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                     <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                         <div class="text-[0.55rem] tracking-[0.2em] uppercase text-[#ff4e00] mb-1">Zik Blue ft. Holy Spell</div>
-                        <div class="text-lg font-bold text-white">The Word</div>
+                        <div class="text-lg font-bold text-white">Question</div>
                     </div>
                 </div>
-                <div class="relative group cursor-pointer overflow-hidden rounded-xl" onclick="playTrack('roland')">
-                    <img src="https://img.youtube.com/vi/5CiEcP3xfzk/maxresdefault.jpg" alt="Roland" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                <div class="relative group cursor-pointer overflow-hidden rounded-xl" onclick="playTrack('message')">
+                    <img src="https://img.youtube.com/vi/5CiEcP3xfzk/maxresdefault.jpg" alt="Message" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                     <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                         <div class="text-[0.55rem] tracking-[0.2em] uppercase text-[#ff4e00] mb-1">Zik Blue</div>
-                        <div class="text-lg font-bold text-white">Roland</div>
+                        <div class="text-lg font-bold text-white">Message</div>
                     </div>
                 </div>
             </div>
@@ -190,7 +201,7 @@
                         <div class="text-2xl font-black uppercase text-white mb-2">Holy Fire</div>
                         <div class="text-[#ff4e00] text-sm mb-3">Fiery Faith. African Soul. Caribbean Flame.</div>
                         <p class="text-[#a0a0a0] text-sm leading-relaxed">
-                            A dynamic Afro-gospel and reggae-influenced artist whose sound fuses African flow with Jamaican flavor.
+                            A dynamic Afro-gospel and reggae-influenced artist whose sound fuses African flow with Jamaican flavor. Known for fiery delivery, prophetic themes, and bold declarations of faith — bringing spiritual intensity to every performance.
                         </p>
                     </div>
                 </div>
@@ -425,10 +436,8 @@
                     <i data-lucide="skip-forward" fill="currentColor" width="20" height="20"></i>
                 </button>
             </div>
-            <div class="w-full h-1 bg-[#222] rounded-full overflow-hidden relative">
-                <div class="w-[45%] h-full bg-[#ff4e00] rounded-full relative">
-                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
-                </div>
+            <div class="text-[0.62rem] tracking-[0.25em] uppercase text-[#a0a0a0]">
+                Playing through YouTube
             </div>
         </div>
 
@@ -443,12 +452,12 @@
     </div>
 
     <!-- Video Modal -->
-    <div id="video-modal" class="hidden fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
+    <div id="video-modal" onclick="handleModalBackdrop(event)" class="hidden fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
         <div class="relative w-full max-w-5xl aspect-video bg-black rounded-lg overflow-hidden border border-[#333] shadow-2xl">
-            <button onclick="closeModal()" class="absolute -top-12 left-0 text-white hover:text-[#ff4e00] flex items-center gap-2 text-sm tracking-widest uppercase transition-colors font-bold">
+            <button onclick="closeModal()" class="absolute top-4 left-4 z-50 bg-[#ff4e00] text-white hover:bg-white hover:text-black flex items-center gap-2 text-xs md:text-sm tracking-widest uppercase transition-colors font-bold px-4 py-2 rounded shadow-lg">
                 <i data-lucide="arrow-left" width="20" height="20"></i> Back to Website
             </button>
-            <button onclick="closeModal()" class="absolute -top-12 right-0 text-[#a0a0a0] hover:text-white flex items-center gap-2 text-sm tracking-widest uppercase transition-colors">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 bg-black/70 text-white hover:text-[#ff4e00] flex items-center gap-2 text-xs md:text-sm tracking-widest uppercase transition-colors px-4 py-2 rounded border border-white/20">
                 Close <i data-lucide="x" width="20" height="20"></i>
             </button>
             <iframe id="youtube-iframe" src="" class="w-full h-full border-none" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -461,12 +470,61 @@
     </button>
 
     <script>
+        // YouTube Background Player
+        let bgPlayer;
+        function onYouTubeIframeAPIReady() {
+            bgPlayer = new YT.Player('bg-video-container', {
+                videoId: '0lB9xV77wmQ', // Default video
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'showinfo': 0,
+                    'rel': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'mute': 1,
+                    'playlist': '0lB9xV77wmQ',
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': (event) => { event.target.playVideo(); }
+                }
+            });
+        }
+
+        let isMuted = true;
+        function toggleSound() {
+            if(bgPlayer) {
+                if(isMuted) {
+                    bgPlayer.unMute();
+                    document.getElementById('tap-sound-btn').innerHTML = '<i data-lucide="volume-2" width="16" height="16"></i> <span id="tap-sound-text">Sound On</span>';
+                    isMuted = false;
+                } else {
+                    bgPlayer.mute();
+                    document.getElementById('tap-sound-btn').innerHTML = '<i data-lucide="volume-x" width="16" height="16"></i> <span id="tap-sound-text">Tap for Sound</span>';
+                    isMuted = true;
+                }
+                lucide.createIcons();
+            }
+        }
+
         const TRACKS = [
           { id: 'glory-fire', title: 'Glory & Fire', artist: 'Ziyana Eya', ytId: '0lB9xV77wmQ' },
           { id: 'take-deeper', title: 'Take Me Deeper', artist: 'Ziyana Eya', ytId: 'Pgf5_pCTfT0' },
-          { id: 'the-word', title: 'The Word', artist: 'Zik Blue ft. Holy Spell', ytId: 'WBSqVDJfVhw' },
-          { id: 'roland', title: 'Roland', artist: 'Zik Blue', ytId: '5CiEcP3xfzk' }
+          { id: 'question', title: 'Question', artist: 'Zik Blue ft. Holy Spell', ytId: 'WBSqVDJfVhw' },
+          { id: 'message', title: 'Message', artist: 'Zik Blue', ytId: '5CiEcP3xfzk' },
+          { id: 'zik-blue-new-1', title: 'Zik Blue Song', artist: 'Zik Blue', ytId: 'jiY5amIP8eY' },
+          { id: 'zik-blue-new-2', title: 'Zik Blue Song 2', artist: 'Zik Blue', ytId: 'fSVPa7Bpsao' }
         ];
+
+        function ytThumb(youtubeId) {
+            return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+        }
+
+        function ytFallback(img, youtubeId) {
+            img.onerror = null;
+            img.src = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
+        }
 
         document.getElementById('ticker-container').innerHTML = [...Array(2)].map(() => `
             <span class="inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-black font-black">
@@ -498,7 +556,7 @@
         document.getElementById('releases-container').innerHTML = TRACKS.map(track => `
         <div onclick="playTrack('${track.id}')" class="group relative overflow-hidden bg-[#161616] border border-[#222] rounded-xl cursor-pointer">
             <div class="aspect-square overflow-hidden relative">
-                <img src="https://img.youtube.com/vi/${track.ytId}/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${track.ytId}/hqdefault.jpg';" alt="${track.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                <img src="${ytThumb(track.ytId)}" onerror="ytFallback(this, '${track.ytId}')" alt="${track.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div class="w-16 h-16 rounded-full bg-[#ff4e00] flex items-center justify-center pl-1 text-white shadow-lg transform scale-75 group-hover:scale-100 transition-all duration-300">
                         <i data-lucide="play" fill="currentColor" width="24" height="24"></i>
@@ -516,7 +574,7 @@
         document.getElementById('videos-container').innerHTML = TRACKS.map(track => `
         <div onclick="openVideo('${track.ytId}')" class="group cursor-pointer bg-[#161616] border border-[#222] rounded-xl overflow-hidden hover:border-[#ff4e00]/50 transition-colors">
             <div class="aspect-video relative overflow-hidden bg-black">
-                <img src="https://img.youtube.com/vi/${track.ytId}/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${track.ytId}/hqdefault.jpg';" alt="${track.title}" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" />
+                <img src="${ytThumb(track.ytId)}" onerror="ytFallback(this, '${track.ytId}')" alt="${track.title}" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div class="w-20 h-20 rounded-full bg-[#ff4e00] flex items-center justify-center pl-2 shadow-[0_0_30px_rgba(255,78,0,0.5)] transform scale-75 group-hover:scale-100 transition-all duration-300">
@@ -615,7 +673,7 @@
             if (!track) return;
             
             // Image
-            document.getElementById('player-img-container').innerHTML = `<img src="https://img.youtube.com/vi/${track.ytId}/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${track.ytId}/hqdefault.jpg';" alt="${track.title}" class="w-full h-full object-cover" />`;
+            document.getElementById('player-img-container').innerHTML = `<img src="${ytThumb(track.ytId)}" onerror="ytFallback(this, '${track.ytId}')" alt="${track.title}" class="w-full h-full object-cover" />`;
             
             // Text
             document.getElementById('player-title').innerText = track.title;
@@ -637,6 +695,9 @@
 
         // Video Modal
         function openVideo(youtubeId) {
+            if (bgPlayer && typeof bgPlayer.pauseVideo === 'function') {
+                bgPlayer.pauseVideo();
+            }
             if (!youtubeId || youtubeId.includes('REPLACE')) {
                 alert('YouTube link coming soon! Share the YouTube IDs with us to activate.');
                 return;
@@ -648,7 +709,22 @@
         function closeModal() {
             document.getElementById('youtube-iframe').src = ``;
             document.getElementById('video-modal').classList.add('hidden');
+            if (bgPlayer && typeof bgPlayer.playVideo === 'function') {
+                bgPlayer.playVideo();
+            }
         }
+
+        function handleModalBackdrop(event) {
+            if (event.target && event.target.id === 'video-modal') {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
