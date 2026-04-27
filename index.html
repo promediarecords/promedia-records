@@ -10,6 +10,7 @@
     body { background:#070707; color:white; font-family: Arial, sans-serif; padding-bottom:90px; }
     .card { background:#151515; border:1px solid #2a2a2a; border-radius:18px; overflow:hidden; transition:.25s; }
     .card:hover { border-color:#ff4e00; transform: translateY(-3px); }
+    .card.active-track { border-color:#ff4e00; box-shadow:0 0 0 2px rgba(255,78,0,.35), 0 0 35px rgba(255,78,0,.18); }
     .orange { color:#ff4e00; }
     .btn { border:1px solid #333; padding:10px 14px; border-radius:8px; font-size:11px; letter-spacing:.15em; text-transform:uppercase; }
     .btn:hover { border-color:#ff4e00; color:#ff4e00; }
@@ -149,7 +150,7 @@ function thumb(t){ return `https://img.youtube.com/vi/${t.yt}/hqdefault.jpg`; }
 
 function render(){
   document.getElementById('grid').innerHTML = TRACKS.map(t => `
-    <div class="card cursor-pointer group" onclick="selectTrack('${t.id}', true)">
+    <div id="track-card-${t.id}" class="card cursor-pointer group" onclick="selectTrack('${t.id}', true)">
       <div class="relative">
         <img src="${thumb(t)}" class="w-full h-72 object-cover group-hover:scale-105 transition duration-500">
         <span class="absolute top-3 left-3 bg-[#ff4e00] px-3 py-1 rounded-full text-xs font-bold">${t.tag}</span>
@@ -173,8 +174,26 @@ function selectTrack(id, play){
   document.getElementById('nowTitle').innerText = current.title;
   document.getElementById('nowArtist').innerText = current.artist;
   document.getElementById('miniImg').src = thumb(current);
+
+  document.querySelectorAll('.card').forEach(card => card.classList.remove('active-track'));
+  const selectedCard = document.getElementById('track-card-' + current.id);
+  if (selectedCard) selectedCard.classList.add('active-track');
+
   history.replaceState(null,'', '?track=' + current.id);
+
   if(play) openCurrent();
+}
+
+function focusSharedTrack(id){
+  selectTrack(id, false);
+  setTimeout(() => {
+    const selectedCard = document.getElementById('track-card-' + id);
+    if (selectedCard) {
+      selectedCard.scrollIntoView({ behavior:'smooth', block:'center' });
+    } else {
+      document.getElementById('music')?.scrollIntoView({ behavior:'smooth' });
+    }
+  }, 350);
 }
 
 function openCurrent(){
@@ -192,7 +211,7 @@ function url(id){ return window.location.origin + window.location.pathname + '?t
 function copyLink(id){
   const t = TRACKS.find(x=>x.id===id);
   navigator.clipboard.writeText(url(id));
-  alert(t.title + ' link copied');
+  alert(t.title + ' song link copied. When opened, it will jump to this song.');
 }
 
 function shareWhatsApp(id){
@@ -205,7 +224,7 @@ render();
 
 const params = new URLSearchParams(window.location.search);
 const trackId = params.get('track');
-if(trackId){ selectTrack(trackId, false); }
+if(trackId && TRACKS.some(t => t.id === trackId)){ focusSharedTrack(trackId); }
 else { selectTrack(TRACKS[0].id, false); }
 </script>
 
