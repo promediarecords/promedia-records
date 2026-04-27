@@ -51,7 +51,7 @@ PRO MEDIA RECORDS
 </div>
 </div>
 
-<!-- PROMISE (NEW) -->
+<!-- PROMISE -->
 <div onclick="play('E29YQ8zatnI')" class="cursor-pointer border p-4">
 <img src="https://img.youtube.com/vi/E29YQ8zatnI/maxresdefault.jpg">
 <h2 class="text-xl">Promise</h2>
@@ -80,7 +80,7 @@ PRO MEDIA RECORDS
 <!-- PLAYER -->
 <iframe id="player" class="w-full h-96"></iframe>
 
-<!-- CONTACT BUTTON -->
+<!-- CONTACT -->
 <div class="flex gap-4 p-6 justify-center">
 
 <a href="mailto:promediacenter4music@gmail.com?subject=Artist Booking Inquiry"
@@ -112,17 +112,17 @@ document.getElementById("player").src =
 }
 
 function share(id){
-const url = window.location.origin + "?track=" + id;
+const url = window.location.origin + window.location.pathname + "?track=" + id;
 navigator.clipboard.writeText(url);
 alert("Link copied");
 }
 
 function whatsapp(id){
-const url = window.location.origin + "?track=" + id;
+const url = window.location.origin + window.location.pathname + "?track=" + id;
 window.open("https://wa.me/?text=" + encodeURIComponent(url));
 }
 
-// AUTO PLAY FROM LINK
+// AUTO LOAD SONG
 const params = new URLSearchParams(window.location.search);
 const track = params.get("track");
 
