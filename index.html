@@ -1,231 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pro Media Records</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { background:#070707; color:white; font-family: Arial, sans-serif; padding-bottom:90px; }
-    .card { background:#151515; border:1px solid #2a2a2a; border-radius:18px; overflow:hidden; transition:.25s; }
-    .card:hover { border-color:#ff4e00; transform: translateY(-3px); }
-    .card.active-track { border-color:#ff4e00; box-shadow:0 0 0 2px rgba(255,78,0,.35), 0 0 35px rgba(255,78,0,.18); }
-    .orange { color:#ff4e00; }
-    .btn { border:1px solid #333; padding:10px 14px; border-radius:8px; font-size:11px; letter-spacing:.15em; text-transform:uppercase; }
-    .btn:hover { border-color:#ff4e00; color:#ff4e00; }
-  </style>
+<title>Pro Media Records</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-black text-white">
 
-<header class="sticky top-0 z-50 bg-black/90 backdrop-blur border-b border-[#222] px-6 py-5 flex justify-between items-center">
-  <div>
-    <h1 class="text-2xl md:text-4xl font-black tracking-widest orange">PRO MEDIA RECORDS</h1>
-    <p class="text-gray-400 tracking-[0.35em] text-xs mt-1">WHERE SOUND MEETS SPIRIT</p>
-  </div>
-  <nav class="hidden md:flex gap-6 text-xs tracking-[0.2em] uppercase text-gray-400">
-    <a href="#music">Music</a>
-    <a href="#artists">Artists</a>
-    <a href="#about">Label</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="px-6 py-20 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-  <div>
-    <p class="orange tracking-[0.3em] text-xs uppercase mb-5">A Global Gospel & Afro-Fusion Label</p>
-    <h2 class="text-5xl md:text-7xl font-black leading-tight">Sound that moves the world</h2>
-    <p class="text-gray-400 text-lg mt-6 leading-relaxed">Faith-driven music with global reach. Home to visionary artists whose sound carries purpose, soul, and the spirit of Africa.</p>
-    <div class="flex gap-4 mt-8">
-      <a href="#music" class="bg-[#ff4e00] px-6 py-4 rounded font-bold tracking-widest text-xs uppercase">Explore Music</a>
-      <a href="#contact" class="border border-[#333] px-6 py-4 rounded font-bold tracking-widest text-xs uppercase">Book an Artist</a>
-    </div>
-  </div>
-  <div class="grid grid-cols-2 gap-4">
-    <img class="rounded-xl h-64 w-full object-cover" src="https://img.youtube.com/vi/0lB9xV77wmQ/hqdefault.jpg" />
-    <img class="rounded-xl h-64 w-full object-cover" src="https://img.youtube.com/vi/WBSqVDJfVhw/hqdefault.jpg" />
-    <img class="rounded-xl h-64 w-full object-cover col-span-2" src="https://img.youtube.com/vi/Ju6q5NzjbSg/hqdefault.jpg" />
-  </div>
-</section>
-
-<section id="music" class="px-6 py-16 max-w-7xl mx-auto">
-  <p class="orange tracking-[0.3em] text-xs uppercase mb-3">Latest Releases</p>
-  <h2 class="text-4xl md:text-5xl font-black mb-10">NEW <span class="text-gray-400">MUSIC</span></h2>
-  <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
-</section>
-
-<section id="artists" class="px-6 py-16 max-w-7xl mx-auto">
-  <p class="orange tracking-[0.3em] text-xs uppercase mb-3">Our Roster</p>
-  <h2 class="text-4xl md:text-5xl font-black mb-10">ARTISTS</h2>
-
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="card p-8">
-      <h3 class="text-3xl font-black orange">ZIK BLUE</h3>
-      <p class="text-gray-400 mt-4 leading-relaxed">A visionary Afro-fusion artist known for blending spiritual themes, melodic storytelling, and vibrant contemporary African rhythms.</p>
-    </div>
-
-    <div class="card p-8">
-      <h3 class="text-3xl font-black orange">ZIYANA EYA</h3>
-      <p class="text-gray-400 mt-4 leading-relaxed">Afro-Gospel artist blending soul, faith, and powerful storytelling through music.</p>
-    </div>
-
-    <div class="card p-8">
-      <h3 class="text-3xl font-black orange">HOLY FIRE</h3>
-      <p class="text-gray-400 mt-4 leading-relaxed">A dynamic Afro-gospel and reggae-influenced artist whose sound fuses African flow with Jamaican flavor.</p>
-    </div>
-
-    <div class="card p-8">
-      <h3 class="text-3xl font-black orange">ZIMORA EL</h3>
-      <p class="text-gray-400 mt-4 leading-relaxed">Zimora El is a dynamic Afro-fusion and spiritual music artist known for blending Afrobeat, Amapiano, and English-Jamaican vocal textures into a bold, uplifting sound.</p>
-      <p class="text-white mt-4 text-sm"><b>Signature style:</b> Afro-fusion • Spiritual Afrobeat • English-Jamaican inflection • High-energy praise sound</p>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="px-6 py-16 bg-[#111]">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-    <div>
-      <p class="orange tracking-[0.3em] text-xs uppercase mb-3">Our Story</p>
-      <h2 class="text-4xl md:text-5xl font-black mb-6">THE LABEL</h2>
-      <p class="text-gray-400 leading-relaxed text-lg">Pro Media Records is a global faith-driven music label — a creative home where purpose-driven sound meets world-class production. From Afro-gospel to Afro-fusion, our artists carry a sound that transcends geography and genre.</p>
-    </div>
-    <div class="card p-8">
-      <h3 class="text-2xl font-bold orange mb-4">Founder</h3>
-      <h4 class="text-3xl font-black">Murtala I. Otokiti</h4>
-      <p class="text-gray-400 mt-4 leading-relaxed">Founder • Author • Songwriter • Producer • App Developer. Author of The Hidden Truth and founder of Pro Media Records.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="px-6 py-16 max-w-6xl mx-auto">
-  <p class="orange tracking-[0.3em] text-xs uppercase mb-3">Get In Touch</p>
-  <h2 class="text-4xl md:text-5xl font-black mb-8">WORK WITH US</h2>
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="card p-8">
-      <p class="text-gray-400 uppercase text-xs tracking-widest">General Inquiries</p>
-      <p class="text-xl mt-3">promediacenter4music@gmail.com</p>
-      <p class="text-xl mt-2">promediabest7@gmail.com</p>
-    </div>
-    <div class="card p-8">
-      <p class="text-gray-400 uppercase text-xs tracking-widest">Bookings & WhatsApp</p>
-      <a class="text-xl mt-3 block orange" href="https://wa.me/2349138205390" target="_blank">+234 913 820 5390</a>
-      <a class="text-xl mt-3 block orange" href="https://www.instagram.com/promediarecords?igsh=dzFjYng5b3c4Ymox" target="_blank">Instagram</a>
-    </div>
-  </div>
-</section>
-
-<div class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-[#222] p-3 flex items-center gap-4 z-50">
-  <div class="w-12 h-12 bg-[#222] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
-  <div class="flex-1">
-    <div id="nowTitle" class="font-bold">Select a track</div>
-    <div id="nowArtist" class="text-gray-400 text-sm">Pro Media Records</div>
-  </div>
-  <button onclick="openCurrent()" class="bg-[#ff4e00] px-5 py-3 rounded-full font-bold">▶</button>
+<div class="text-center text-3xl p-6 text-orange-500 font-bold">
+PRO MEDIA RECORDS
 </div>
 
-<div id="modal" class="hidden fixed inset-0 bg-black/95 z-[100] p-5 flex items-center justify-center">
-  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded">← Back</button>
-  <iframe id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="grid md:grid-cols-3 gap-6 p-6">
+
+<!-- THE WORD -->
+<div onclick="play('WBSqVDJfVhw')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/WBSqVDJfVhw/maxresdefault.jpg">
+<h2 class="text-xl">The Word</h2>
+<p class="text-sm text-gray-400">Zik Blue ft. Holy Spell</p>
+
+<button onclick="event.stopPropagation(); share('the-word')">Copy Link</button>
+<button onclick="event.stopPropagation(); whatsapp('the-word')">WhatsApp</button>
 </div>
+
+<!-- TAKE ME DEEPER -->
+<div onclick="play('0lB9xV77wmQ')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/0lB9xV77wmQ/maxresdefault.jpg">
+<h2 class="text-xl">Take Me Deeper</h2>
+<p class="text-sm text-gray-400">Ziyana Eya</p>
+
+<button onclick="event.stopPropagation(); share('take-me-deeper')">Copy Link</button>
+<button onclick="event.stopPropagation(); whatsapp('take-me-deeper')">WhatsApp</button>
+</div>
+
+<!-- GLORY & FIRE (NEW FIXED LINK) -->
+<div onclick="play('N3SiQLQvrTc')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/N3SiQLQvrTc/maxresdefault.jpg">
+<h2 class="text-xl">Glory & Fire</h2>
+<p class="text-sm text-gray-400">Ziyana Eya</p>
+
+<button onclick="event.stopPropagation(); share('glory-fire')">Copy Link</button>
+<button onclick="event.stopPropagation(); whatsapp('glory-fire')">WhatsApp</button>
+</div>
+
+</div>
+
+<iframe id="player" class="w-full h-96"></iframe>
 
 <script>
-const TRACKS = [
-  {id:'glory-fire', title:'Glory & Fire', artist:'Ziyana Eya', yt:'0lB9xV77wmQ', tag:'ZIYANA'},
-  {id:'question', title:'Question', artist:'Zik Blue ft. Holy Spell', yt:'WBSqVDJfVhw', tag:'ZIK BLUE'},
-  {id:'holy-fire-many-stories', title:'Many Stories', artist:'Holy Fire', yt:'bEHi5onUR8w', tag:'NEW'},
-  {id:'zik-blue-shawn-sharon', title:'Shawn & Sharon', artist:'Zik Blue', yt:'Ju6q5NzjbSg', tag:'WEDDING'},
-  {id:'holy-fire-remember-me', title:'Remember Me', artist:'Holy Fire', yt:'PZYLwQu_eP4', tag:'HOLY FIRE'},
-  {id:'zimora-back-then', title:'Back Then', artist:'Zimora El', yt:'GtpizltPyWI', tag:'ZIMORA'},
-  {id:'holy-fire-you-are-holy', title:'You Are Holy', artist:'Holy Fire', yt:'TkMJ7N_ZH9Q', tag:'HOLY FIRE'},
-  {id:'message', title:'Message', artist:'Zik Blue', yt:'5CiEcP3xfzk', tag:'ZIK BLUE'},
-  {id:'lift-me-up', title:'Lift Me Up', artist:'Zik Blue', yt:'f3i2mWbdPgk', tag:'ZIK BLUE'},
-  {id:'roland', title:'Roland (True Life Story)', artist:'Zik Blue', yt:'jQVugsZAVaQ', tag:'FEATURED'},
-  {id:'shawn-sharon-old', title:'Shawn & Sharon', artist:'Zik Blue', yt:'jiY5amIP8eY', tag:'ZIK BLUE'}
-];
 
-let current = TRACKS[0];
+const links = {
+  "the-word": "WBSqVDJfVhw",
+  "take-me-deeper": "0lB9xV77wmQ",
+  "glory-fire": "N3SiQLQvrTc"
+};
 
-function thumb(t){ return `https://img.youtube.com/vi/${t.yt}/hqdefault.jpg`; }
-
-function render(){
-  document.getElementById('grid').innerHTML = TRACKS.map(t => `
-    <div id="track-card-${t.id}" class="card cursor-pointer group" onclick="selectTrack('${t.id}', true)">
-      <div class="relative">
-        <img src="${thumb(t)}" class="w-full h-72 object-cover group-hover:scale-105 transition duration-500">
-        <span class="absolute top-3 left-3 bg-[#ff4e00] px-3 py-1 rounded-full text-xs font-bold">${t.tag}</span>
-        <div class="absolute inset-0 flex items-center justify-center opacity-90"><div class="bg-[#ff4e00] w-14 h-14 rounded-full flex items-center justify-center text-2xl">▶</div></div>
-      </div>
-      <div class="p-5">
-        <p class="orange text-xs uppercase tracking-widest font-bold">${t.artist}</p>
-        <h3 class="text-2xl font-bold mt-1">${t.title}</h3>
-        <p class="text-gray-400 text-sm mt-1">Afro-Gospel / Fusion</p>
-        <div class="flex gap-2 mt-4">
-          <button class="btn" onclick="event.stopPropagation(); copyLink('${t.id}')">Copy Link</button>
-          <button class="btn" onclick="event.stopPropagation(); shareWhatsApp('${t.id}')">WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
+function play(id){
+document.getElementById("player").src = "https://www.youtube.com/embed/" + id;
 }
 
-function selectTrack(id, play){
-  current = TRACKS.find(t => t.id === id) || TRACKS[0];
-  document.getElementById('nowTitle').innerText = current.title;
-  document.getElementById('nowArtist').innerText = current.artist;
-  document.getElementById('miniImg').src = thumb(current);
-
-  document.querySelectorAll('.card').forEach(card => card.classList.remove('active-track'));
-  const selectedCard = document.getElementById('track-card-' + current.id);
-  if (selectedCard) selectedCard.classList.add('active-track');
-
-  history.replaceState(null,'', '?track=' + current.id);
-
-  if(play) openCurrent();
+function share(id){
+const url = window.location.origin + "?track=" + id;
+navigator.clipboard.writeText(url);
+alert("Song link copied");
 }
 
-function focusSharedTrack(id){
-  selectTrack(id, false);
-  setTimeout(() => {
-    const selectedCard = document.getElementById('track-card-' + id);
-    if (selectedCard) {
-      selectedCard.scrollIntoView({ behavior:'smooth', block:'center' });
-    } else {
-      document.getElementById('music')?.scrollIntoView({ behavior:'smooth' });
-    }
-  }, 350);
+function whatsapp(id){
+const url = window.location.origin + "?track=" + id;
+window.open("https://wa.me/?text=" + encodeURIComponent("Listen: " + url));
 }
 
-function openCurrent(){
-  document.getElementById('player').src = `https://www.youtube.com/embed/${current.yt}?autoplay=1&rel=0`;
-  document.getElementById('modal').classList.remove('hidden');
-}
-
-function closeVideo(){
-  document.getElementById('modal').classList.add('hidden');
-  document.getElementById('player').src = '';
-}
-
-function url(id){ return window.location.origin + window.location.pathname + '?track=' + id; }
-
-function copyLink(id){
-  const t = TRACKS.find(x=>x.id===id);
-  navigator.clipboard.writeText(url(id));
-  alert(t.title + ' song link copied. When opened, it will jump to this song.');
-}
-
-function shareWhatsApp(id){
-  const t = TRACKS.find(x=>x.id===id);
-  const text = `${t.title} by ${t.artist} — Listen on Pro Media Records: ${url(id)}`;
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-}
-
-render();
-
+// AUTO LOAD FROM LINK
 const params = new URLSearchParams(window.location.search);
-const trackId = params.get('track');
-if(trackId && TRACKS.some(t => t.id === trackId)){ focusSharedTrack(trackId); }
-else { selectTrack(TRACKS[0].id, false); }
+const track = params.get("track");
+
+if(track && links[track]){
+play(links[track]);
+}
+
 </script>
 
 </body>
