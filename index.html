@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Media Records</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white">
+
+<h1 class="text-center text-3xl text-orange-500 p-6 font-bold">PRO MEDIA RECORDS</h1>
+
+<div class="grid md:grid-cols-3 gap-6 p-6">
+
+<!-- Shawn & Sharon -->
+<div onclick="play('Ju6q5NzjbSg')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/Ju6q5NzjbSg/hqdefault.jpg">
+<h2>Shawn & Sharon</h2>
+<p>Zik Blue (Wedding)</p>
+</div>
+
+<!-- Many Stories -->
+<div onclick="play('bEHi5onUR8w')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/bEHi5onUR8w/hqdefault.jpg">
+<h2>Many Stories</h2>
+<p>Holy Fire</p>
+</div>
+
+<!-- Back Then -->
+<div onclick="play('GtpizltPyWI')" class="cursor-pointer border p-4">
+<img src="https://img.youtube.com/vi/GtpizltPyWI/hqdefault.jpg">
+<h2>Back Then</h2>
+<p>Zimora El</p>
+</div>
+
+</div>
+
+<iframe id="player" class="w-full h-96"></iframe>
+
+<script>
+function play(id){
+document.getElementById("player").src = "https://www.youtube.com/embed/" + id;
+}
+</script>
+
+</body>
+</html>
