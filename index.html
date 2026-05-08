@@ -478,9 +478,21 @@ function cleanVideoId(videoId) {
 function openVideo(videoId) {
   const id = cleanVideoId(videoId);
   if (!id) return;
-  document.getElementById('youtubeDirect').href = `https://www.youtube.com/watch?v=${id}`;
-  document.getElementById('player').src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
-  document.getElementById('modal').classList.remove('hidden');
+
+  const directLink = document.getElementById('youtubeDirect');
+  if (directLink) {
+    directLink.href = `https://www.youtube.com/watch?v=${id}`;
+  }
+
+  const player = document.getElementById('player');
+  const modal = document.getElementById('modal');
+  if (!player || !modal) {
+    window.open(`https://www.youtube.com/watch?v=${id}`, '_blank');
+    return;
+  }
+
+  player.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+  modal.classList.remove('hidden');
 }
 
 function openSponsorVideo(videoId) {
