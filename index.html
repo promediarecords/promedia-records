@@ -281,12 +281,13 @@
     <div id="nowTitle" class="font-bold truncate">Select a track</div>
     <div id="nowArtist" class="text-gray-400 text-sm truncate">Pro Media Records</div>
   </div>
-  <button onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold">▶</button>
+  <button type="button" onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold">▶</button>
 </div>
 
-<div id="modal" class="hidden fixed inset-0 bg-black/95 z-[100] p-5 flex items-center justify-center">
-  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded">← Back</button>
-  <iframe id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div id="modal" class="hidden fixed inset-0 bg-black/95 z-[9999] p-5 flex items-center justify-center">
+  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded z-[10000]">← Back</button>
+  <a id="youtubeDirect" href="#" target="_blank" class="absolute top-5 right-5 brand-bg text-black px-4 py-2 rounded font-black text-xs tracking-widest uppercase z-[10000]">Open YouTube</a>
+  <iframe id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <script>
@@ -470,14 +471,24 @@ function selectTrack(id, play) {
 }
 
 
-function openSponsorVideo(videoId) {
-  document.getElementById('player').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+function cleanVideoId(videoId) {
+  return String(videoId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+}
+
+function openVideo(videoId) {
+  const id = cleanVideoId(videoId);
+  if (!id) return;
+  document.getElementById('youtubeDirect').href = `https://www.youtube.com/watch?v=${id}`;
+  document.getElementById('player').src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
   document.getElementById('modal').classList.remove('hidden');
 }
 
+function openSponsorVideo(videoId) {
+  openVideo(videoId);
+}
+
 function openCurrent() {
-  document.getElementById('player').src = `https://www.youtube.com/embed/${current.yt}?autoplay=1&rel=0`;
-  document.getElementById('modal').classList.remove('hidden');
+  openVideo(current.yt);
 }
 
 function closeVideo() {
