@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Media Records | Holy Fire OS</title>
+  <meta name="description" content="Pro Media Records is an autonomous gospel and Afro-fusion music experience built around songs that minister continuously." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html{scroll-behavior:smooth}body{background:#080808;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden;padding-bottom:92px}.orange{color:#ff4e00}.brand-bg{background:#ff4e00}.card{background:#161616;border:1px solid #2a2a2a;border-radius:20px;overflow:hidden;transition:.25s ease}.card:hover{border-color:#ff4e00;transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.35)}.active-card{border-color:#ff4e00!important;box-shadow:0 0 0 2px rgba(255,78,0,.35),0 0 35px rgba(255,78,0,.2)}.btn{border:1px solid #333;padding:10px 14px;border-radius:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.2s}.btn:hover{border-color:#ff4e00;color:#ff4e00}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.marquee{animation:marquee 24s linear infinite}.glow{box-shadow:0 0 60px rgba(255,78,0,.14)}.os-panel{background:linear-gradient(135deg,#111,#1b100b 55%,#090909);border:1px solid rgba(255,78,0,.35);border-radius:28px}.os-pill{display:inline-flex;border:1px solid rgba(255,78,0,.45);background:rgba(255,78,0,.11);color:#ff7b39;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.mood-btn{border:1px solid #333;background:#111;color:#ddd;border-radius:999px;padding:11px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.mood-btn:hover,.mood-btn.active{background:#ff4e00;color:#050505;border-color:#ff4e00}.mini-card{background:#111;border:1px solid #252525;border-radius:18px;padding:18px}.now-img{width:100%;height:320px;object-fit:cover;border-radius:20px;border:1px solid #252525}.pmr-install-bar{position:fixed;left:14px;right:14px;bottom:86px;z-index:9999;background:linear-gradient(135deg,#0b0b0b,#171717);border:1px solid rgba(255,78,0,.55);box-shadow:0 18px 55px rgba(0,0,0,.65),0 0 24px rgba(255,78,0,.18);border-radius:18px;padding:12px 14px;display:none;align-items:center;gap:12px}.pmr-install-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#000;border:1px solid rgba(255,78,0,.45);flex-shrink:0}@media(max-width:520px){.now-img{height:240px}.pmr-install-bar{left:10px;right:10px;bottom:80px;padding:10px}}
+  </style>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ff4e00">
+</head>
+<body>
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur border-b border-[#222] px-5 md:px-10 py-5 flex items-center justify-between">
+  <div onclick="showHome()" class="cursor-pointer">
+    <h1 class="text-2xl md:text-4xl font-black tracking-widest orange">PRO MEDIA RECORDS</h1>
+    <p class="text-gray-400 text-[10px] md:text-xs tracking-[0.35em] mt-1">WHERE SOUND MEETS SPIRIT</p>
+  </div>
+  <nav class="hidden md:flex gap-7 text-xs tracking-[0.22em] uppercase text-gray-400">
+    <a href="#autonomous" onclick="showHome()">Holy Fire OS</a>
+    <a href="#music" onclick="showHome()">Music</a>
+    <a href="#artists" onclick="showHome()">Artists</a>
+    <a href="#about" onclick="showHome()">Label</a>
+    <a href="#contact" onclick="showHome()">Contact</a>
+  </nav>
+</header>
+
+<main id="homeView">
+  <section class="pt-36 px-6 pb-16 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="orange tracking-[0.35em] text-xs uppercase mb-5">Holy Fire OS • Worship Never Sleeps</p>
+      <h2 class="text-5xl md:text-7xl font-black uppercase leading-tight">Songs <span class="orange">that minister</span> continuously</h2>
+      <p class="text-gray-400 text-lg mt-6 leading-relaxed max-w-xl">An autonomous gospel and Afro-fusion music experience built around songs, stories, scripture reflections, and daily ministration.</p>
+      <div class="flex flex-wrap gap-4 mt-9">
+        <button onclick="pmrStartAutoMinistry()" class="brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">▶ Start Auto Ministry</button>
+        <a href="#music" class="border border-[#333] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Explore Music</a>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div onclick="selectTrack('shawn-and-sharon', true)" class="relative rounded-2xl overflow-hidden cursor-pointer h-72 card">
+        <img src="https://img.youtube.com/vi/fSVPa7Bpsao/hqdefault.jpg" class="w-full h-full object-cover" />
+        <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black to-transparent"><p class="orange text-xs uppercase tracking-widest">Zik Blue</p><p class="font-bold text-xl">Shawn and Sharon</p></div>
+      </div>
+      <div onclick="selectTrack('take-me-deeper', true)" class="relative rounded-2xl overflow-hidden cursor-pointer h-72 card">
+        <img src="https://img.youtube.com/vi/0lB9xV77wmQ/hqdefault.jpg" class="w-full h-full object-cover" />
+        <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black to-transparent"><p class="orange text-xs uppercase tracking-widest">Ziyana Eya</p><p class="font-bold text-xl">Take Me Deeper</p></div>
+      </div>
+      <div onclick="selectTrack('message', true)" class="relative rounded-2xl overflow-hidden cursor-pointer h-72 col-span-2 card">
+        <img src="https://img.youtube.com/vi/5CiEcP3xfzk/hqdefault.jpg" class="w-full h-full object-cover" />
+        <div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black to-transparent"><p class="orange text-xs uppercase tracking-widest">Zik Blue</p><p class="font-bold text-2xl">Message</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="brand-bg text-black py-4 overflow-hidden">
+    <div class="marquee inline-flex gap-10 font-black tracking-[0.25em] uppercase text-xs">
+      <span>• Holy Fire OS</span><span>• Worship Never Sleeps</span><span>• Daily Song Ministration</span><span>• Pro Media Records</span><span>• Afro-Gospel</span><span>• Afro-Fusion</span>
+      <span>• Holy Fire OS</span><span>• Worship Never Sleeps</span><span>• Daily Song Ministration</span><span>• Pro Media Records</span><span>• Afro-Gospel</span><span>• Afro-Fusion</span>
+    </div>
+  </div>
+
+  <section id="autonomous" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="os-panel p-6 md:p-10 glow">
+      <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-start">
+        <div>
+          <span class="os-pill">⚡ Autonomous Song Experience</span>
+          <h2 class="text-4xl md:text-6xl font-black mt-5 uppercase">Today’s <span class="orange">Ministration</span></h2>
+          <p class="text-gray-300 text-lg leading-relaxed mt-5 max-w-2xl">Every visit can feature a different song, scripture reflection, song story, and recommendation based on what the listener needs.</p>
+          <div class="grid sm:grid-cols-3 gap-4 mt-8">
+            <div class="mini-card"><p class="orange text-2xl">01</p><h3 class="font-black text-lg mt-2">Daily Song</h3><p class="text-gray-400 text-sm mt-2">The site selects a song automatically.</p></div>
+            <div class="mini-card"><p class="orange text-2xl">02</p><h3 class="font-black text-lg mt-2">Song Story</h3><p class="text-gray-400 text-sm mt-2">Each song explains its inspiration.</p></div>
+            <div class="mini-card"><p class="orange text-2xl">03</p><h3 class="font-black text-lg mt-2">Song Matcher</h3><p class="text-gray-400 text-sm mt-2">Visitors are guided to the right song.</p></div>
+          </div>
+          <div class="mt-8"><button onclick="pmrStartAutoMinistry()" class="brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">Start 24/7 Rotation</button></div>
+        </div>
+        <div class="bg-[#0d0d0d] border border-[#252525] rounded-[28px] p-5">
+          <p class="orange tracking-[0.25em] text-xs uppercase font-black">Now Ministering</p>
+          <img id="osSongImage" class="now-img mt-5" alt="Featured song artwork">
+          <h3 id="osSongTitle" class="text-3xl md:text-4xl font-black mt-5">Loading Song...</h3>
+          <p id="osSongArtist" class="orange font-black tracking-widest uppercase text-xs mt-2">Pro Media Records</p>
+          <p id="osSongStory" class="text-gray-300 leading-relaxed mt-4"></p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-5">
+            <div class="mini-card"><p class="text-gray-500 text-xs uppercase tracking-widest">Scripture / Theme</p><p id="osSongScripture" class="font-bold mt-2"></p></div>
+            <div class="mini-card"><p class="text-gray-500 text-xs uppercase tracking-widest">Best For</p><p id="osSongMood" class="font-bold mt-2"></p></div>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-5"><button id="osPlayBtn" class="brand-bg px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black">Play Song</button><a id="osYouTubeBtn" target="_blank" class="btn">Open YouTube</a></div>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-6 mt-8">
+        <div class="mini-card"><p class="orange tracking-[0.25em] text-xs uppercase font-black mb-4">Song Matcher</p><h3 class="text-3xl font-black">How are you feeling today?</h3><p class="text-gray-400 mt-3">Choose one. The site recommends one of your songs instantly.</p><div class="flex flex-wrap gap-3 mt-5"><button class="mood-btn" onclick="pmrRecommendMood('love', event)">Love</button><button class="mood-btn" onclick="pmrRecommendMood('deeper', event)">Seeking More</button><button class="mood-btn" onclick="pmrRecommendMood('rising', event)">Need Hope</button><button class="mood-btn" onclick="pmrRecommendMood('gratitude', event)">Thankful</button><button class="mood-btn" onclick="pmrRecommendMood('promise', event)">Holding Promise</button><button class="mood-btn" onclick="pmrRecommendMood('healing', event)">Emotional</button></div></div>
+        <div id="osRecommendation" class="mini-card"><p class="orange text-xs uppercase tracking-widest font-black">Recommended Song</p><h4 class="text-2xl font-black mt-2">Choose a mood</h4><p class="text-gray-400 mt-3">Your recommendation will appear here.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="music" class="px-6 py-20 max-w-7xl mx-auto">
+    <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Latest Releases</p>
+    <h2 class="text-4xl md:text-5xl font-black mb-10">NEW <span class="text-gray-400">MUSIC</span></h2>
+    <div id="musicGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </section>
+
+  <section id="artists" class="px-6 py-20 max-w-7xl mx-auto">
+    <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Our Roster</p>
+    <h2 class="text-4xl md:text-5xl font-black mb-5">ARTISTS</h2>
+    <p class="text-gray-400 mb-9">Click any artist to see their songs.</p>
+    <div id="artistGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </section>
+
+  <section id="about" class="px-6 py-20 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <div><p class="orange tracking-[0.35em] text-xs uppercase mb-3">The Label</p><h2 class="text-4xl md:text-5xl font-black mb-6">A SOUND WITH PURPOSE</h2><p class="text-gray-400 text-lg leading-relaxed">Pro Media Records is built for faith-driven music, Afro-gospel, Afro-fusion, worship, and stories that carry meaning. Holy Fire OS makes the catalog feel alive by rotating songs, stories, and reflections automatically.</p></div>
+    <div class="card p-8"><p class="orange text-5xl font-black">“</p><p class="text-2xl font-bold leading-relaxed">Worship never sleeps. Every song has a story, a message, and a moment where it can minister.</p></div>
+  </section>
+
+  <section id="contact" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="card p-8 md:p-12 text-center"><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Connect</p><h2 class="text-4xl md:text-5xl font-black">BOOK AN ARTIST OR FEATURE</h2><p class="text-gray-400 mt-5 max-w-2xl mx-auto">For bookings, collaborations, music features, interviews, and label conversations.</p><a href="mailto:promediarecords@gmail.com" class="inline-flex mt-8 brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">Contact Pro Media Records</a></div>
+  </section>
+</main>
+
+<div id="artistProfile" class="hidden pt-32 px-6 pb-24 max-w-7xl mx-auto">
+  <button onclick="showHome()" class="mb-8 btn">← Back to Home</button>
+  <div class="grid md:grid-cols-[330px_1fr] gap-8 items-start">
+    <div class="card"><img id="profileImg" class="w-full h-[400px] object-cover" /></div>
+    <div><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Artist Profile</p><h2 id="profileName" class="text-5xl md:text-7xl font-black"></h2><p id="profileBio" class="text-gray-400 text-lg leading-relaxed mt-6 max-w-3xl"></p></div>
+  </div>
+  <section class="py-16"><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Artist Songs</p><h2 id="profileSongTitle" class="text-4xl md:text-5xl font-black mb-10"></h2><div id="profileSongs" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div></section>
+</div>
+
+<div class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-[#222] p-3 flex items-center gap-4 z-50">
+  <div class="w-12 h-12 bg-[#222] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
+  <div class="flex-1 overflow-hidden"><div id="nowTitle" class="font-bold truncate">Select a track</div><div id="nowArtist" class="text-gray-400 text-sm truncate">Pro Media Records</div></div>
+  <button type="button" onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold text-black">▶</button>
+</div>
+
+<div id="modal" class="hidden fixed inset-0 bg-black/95 z-[9999] p-5 flex items-center justify-center">
+  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded z-[10000]">← Back</button>
+  <a id="youtubeDirect" href="#" target="_blank" class="absolute top-5 right-5 brand-bg text-black px-4 py-2 rounded font-black text-xs tracking-widest uppercase z-[10000]">Open YouTube</a>
+  <iframe id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<script>
+const SONGS = [
+  {id:'shawn-and-sharon', title:'Shawn and Sharon', artist:'Zik Blue', youtube:'fSVPa7Bpsao', image:'https://img.youtube.com/vi/fSVPa7Bpsao/hqdefault.jpg', theme:'Love • Covenant • Celebration', mood:'love celebration wedding', story:'Created as a wedding gift for Shawn and Sharon. This song celebrates love as a beautiful thing and turns a special union into a lasting sound of joy.'},
+  {id:'take-me-deeper', title:'Take Me Deeper', artist:'Ziyana Eya', youtube:'0lB9xV77wmQ', image:'https://img.youtube.com/vi/0lB9xV77wmQ/hqdefault.jpg', theme:'Psalm 42:7 • Deep calls unto deep', mood:'deeper worship glory faith', story:'A song for more of God’s glory. It carries a cry for a deeper walk with God, beyond the surface and into a stronger place of worship and surrender.'},
+  {id:'bege-zai-tashi', title:'Bege Zai Tashi', artist:'Rise One', youtube:'rO465paoc-s', image:'https://img.youtube.com/vi/rO465paoc-s/hqdefault.jpg', theme:'Isaiah 60:1 • Arise and shine', mood:'rising hope strength', story:'A sound of hope rising again. Bege Zai Tashi speaks to people who have been through difficult seasons but still believe that light, strength, and joy will rise.'},
+  {id:'stronger-and-wiser', title:'Stronger and Wiser', artist:'Holy Fire', youtube:'8ReaZcQYpbA', image:'https://img.youtube.com/vi/8ReaZcQYpbA/hqdefault.jpg', theme:'Psalm 118:23 • The Lord has done this', mood:'gratitude testimony stronger wiser', story:'A song of gratitude. God came through, and the testimony is clear: after the journey, there is strength, wisdom, and a new reason to give thanks.'},
+  {id:'promise', title:'Promise', artist:'Ziyana Eya', youtube:'E29YQ8zatnI', image:'https://img.youtube.com/vi/E29YQ8zatnI/hqdefault.jpg', theme:'2 Corinthians 1:20 • God’s promises are Yes and Amen', mood:'promise faith waiting trust', story:'A song for anyone holding on to what God has spoken. Promise reminds the listener that delay is not denial and that God’s word remains faithful.'},
+  {id:'message', title:'Message', artist:'Zik Blue', youtube:'5CiEcP3xfzk', image:'https://img.youtube.com/vi/5CiEcP3xfzk/hqdefault.jpg', theme:'Psalm 34:18 • God is close to the brokenhearted', mood:'healing emotion story testimony', story:'A deeply emotional song written from real experience. Message carries the weight of what was endured, the lessons learned, and the courage to speak through music.'}
+];
+let currentId = null; let flowTimer = null; let flowIndex = 0;
+const artists = [...new Set(SONGS.map(s=>s.artist))].map(name=>({name, image:(SONGS.find(s=>s.artist===name)||SONGS[0]).image, bio: artistBio(name)}));
+function artistBio(name){return ({'Zik Blue':'A Pro Media Records artist with emotional delivery, storytelling strength, and Afro-fusion energy.','Ziyana Eya':'A worship voice carrying depth, devotion, promise, and spiritual atmosphere.','Rise One':'A sound of hope, encouragement, and rising faith.','Holy Fire':'A spiritual fire voice with street gospel energy, testimony, and worship conviction.'}[name] || 'Pro Media Records artist.');}
+function showHome(){document.getElementById('artistProfile').classList.add('hidden');document.getElementById('homeView').classList.remove('hidden');}
+function selectTrack(id, open=false){const s=SONGS.find(x=>x.id===id)||SONGS[0];currentId=s.id;document.getElementById('miniImg').src=s.image;document.getElementById('nowTitle').textContent=s.title;document.getElementById('nowArtist').textContent=s.artist;document.querySelectorAll('[data-track-card]').forEach(c=>c.classList.toggle('active-card',c.dataset.trackCard===id));if(open)openCurrent();}
+function openCurrent(){const s=SONS_SAFE();if(!s)return;document.getElementById('modal').classList.remove('hidden');document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube;document.getElementById('player').src='https://www.youtube.com/embed/'+s.youtube+'?autoplay=1';}
+function SONS_SAFE(){return SONGS.find(x=>x.id===currentId)||SONGS[0];}
+function closeVideo(){document.getElementById('modal').classList.add('hidden');document.getElementById('player').src='';}
+function songCard(s){return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">Play</button><a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a></div></div></div>`}
+function renderGrids(){document.getElementById('musicGrid').innerHTML=SONGS.map(songCard).join('');document.getElementById('artistGrid').innerHTML=artists.map(a=>`<div onclick="openArtist('${a.name.replace(/'/g,"\\'")}')" class="card cursor-pointer"><img src="${a.image}" class="w-full h-64 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">Artist</p><h3 class="text-2xl font-black mt-2">${a.name}</h3><p class="text-gray-400 text-sm mt-3">${SONGS.filter(s=>s.artist===a.name).length} song(s) in Holy Fire OS</p></div></div>`).join('');}
+function openArtist(name){const a=artists.find(x=>x.name===name);const songs=SONGS.filter(s=>s.artist===name);document.getElementById('homeView').classList.add('hidden');document.getElementById('artistProfile').classList.remove('hidden');document.getElementById('profileImg').src=a.image;document.getElementById('profileName').textContent=a.name;document.getElementById('profileBio').textContent=a.bio;document.getElementById('profileSongTitle').textContent=a.name+' Songs';document.getElementById('profileSongs').innerHTML=songs.map(songCard).join('');window.scrollTo({top:0,behavior:'smooth'});}
+function todayIndex(){const now=new Date();const seed=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);return seed%SONGS.length;}
+function renderMinistration(song){document.getElementById('osSongImage').src=song.image;document.getElementById('osSongTitle').textContent=song.title;document.getElementById('osSongArtist').textContent=song.artist;document.getElementById('osSongStory').textContent=song.story;document.getElementById('osSongScripture').textContent=song.theme;document.getElementById('osSongMood').textContent=song.mood.split(' ').map(w=>w[0].toUpperCase()+w.slice(1)).join(' • ');document.getElementById('osYouTubeBtn').href='https://www.youtube.com/watch?v='+song.youtube;document.getElementById('osPlayBtn').onclick=()=>selectTrack(song.id,true);}
+function pmrStartAutoMinistry(){renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;clearInterval(flowTimer);flowTimer=setInterval(()=>{renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;},12000);document.getElementById('autonomous').scrollIntoView({behavior:'smooth'});}
+function pmrRecommendMood(mood, ev){document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));if(ev&&ev.target)ev.target.classList.add('active');const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];renderMinistration(song);selectTrack(song.id,false);document.getElementById('osRecommendation').innerHTML=`<p class="orange text-xs uppercase tracking-widest font-black">Recommended Song</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 mt-3">${song.story}</p><button class="brand-bg px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black mt-4" onclick="selectTrack('${song.id}', true)">Play Recommendation</button>`;}
+document.addEventListener('DOMContentLoaded',()=>{renderGrids();flowIndex=todayIndex();renderMinistration(SONGS[flowIndex]);selectTrack(SONGS[0].id,false);});
+</script>
+</body>
+</html>
