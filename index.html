@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html{scroll-behavior:smooth}body{background:#080808;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden;padding-bottom:92px}.orange{color:#ff4e00}.brand-bg{background:#ff4e00}.card{background:#161616;border:1px solid #2a2a2a;border-radius:20px;overflow:hidden;transition:.25s ease}.card:hover{border-color:#ff4e00;transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.35)}.active-card{border-color:#ff4e00!important;box-shadow:0 0 0 2px rgba(255,78,0,.35),0 0 35px rgba(255,78,0,.2)}.btn{border:1px solid #333;padding:10px 14px;border-radius:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.2s}.btn:hover{border-color:#ff4e00;color:#ff4e00}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.marquee{animation:marquee 24s linear infinite}.glow{box-shadow:0 0 60px rgba(255,78,0,.14)}.os-panel{background:linear-gradient(135deg,#111,#1b100b 55%,#090909);border:1px solid rgba(255,78,0,.35);border-radius:28px}.os-pill{display:inline-flex;border:1px solid rgba(255,78,0,.45);background:rgba(255,78,0,.11);color:#ff7b39;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.mood-btn{border:1px solid #333;background:#111;color:#ddd;border-radius:999px;padding:11px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.mood-btn:hover,.mood-btn.active{background:#ff4e00;color:#050505;border-color:#ff4e00}.mini-card{background:#111;border:1px solid #252525;border-radius:18px;padding:18px}.now-img{width:100%;height:320px;object-fit:cover;border-radius:20px;border:1px solid #252525}.pmr-install-bar{position:fixed;left:14px;right:14px;bottom:86px;z-index:9999;background:linear-gradient(135deg,#0b0b0b,#171717);border:1px solid rgba(255,78,0,.55);box-shadow:0 18px 55px rgba(0,0,0,.65),0 0 24px rgba(255,78,0,.18);border-radius:18px;padding:12px 14px;display:none;align-items:center;gap:12px}.pmr-install-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#000;border:1px solid rgba(255,78,0,.45);flex-shrink:0}@media(max-width:520px){.now-img{height:240px}.pmr-install-bar{left:10px;right:10px;bottom:80px;padding:10px}}
+  
+    .living-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}.living-card{background:linear-gradient(135deg,#111,#151515);border:1px solid #292929;border-radius:24px;padding:24px;position:relative;overflow:hidden}.living-card:before{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,78,0,.09)}.living-card>*{position:relative}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}.holy-input,.holy-select,.holy-textarea{width:100%;background:#0b0b0b;border:1px solid #303030;border-radius:14px;padding:14px 15px;color:#fff;outline:none}.holy-input:focus,.holy-select:focus,.holy-textarea:focus{border-color:#ff4e00;box-shadow:0 0 0 3px rgba(255,78,0,.12)}.holy-textarea{min-height:120px;resize:vertical}.live-dot{width:8px;height:8px;border-radius:50%;background:#ff4e00;display:inline-block;box-shadow:0 0 18px rgba(255,78,0,.8);animation:pulsePMR 1.5s infinite}@keyframes pulsePMR{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}.world-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #252525;padding:12px 0}.world-row:last-child{border-bottom:0}.quote-mark{font-size:56px;line-height:0;color:#ff4e00;opacity:.55}.devotional-text{font-size:16px;line-height:1.85;color:#d6d6d6}.holy-chip{display:inline-flex;border:1px solid rgba(255,78,0,.32);background:rgba(255,78,0,.09);border-radius:999px;padding:8px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:#ff9b68}@media(max-width:900px){.living-grid{grid-template-columns:1fr}.span-7,.span-5,.span-4,.span-6,.span-12{grid-column:span 1}}
+
   </style>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#ff4e00">
@@ -20,6 +23,8 @@
   </div>
   <nav class="hidden md:flex gap-7 text-xs tracking-[0.22em] uppercase text-gray-400">
     <a href="#autonomous" onclick="showHome()">Holy Fire OS</a>
+    <a href="#daily" onclick="showHome()">Daily</a>
+    <a href="#ask" onclick="showHome()">Ask Holy Fire</a>
     <a href="#music" onclick="showHome()">Music</a>
     <a href="#artists" onclick="showHome()">Artists</a>
     <a href="#about" onclick="showHome()">Label</a>
@@ -35,6 +40,7 @@
       <p class="text-gray-400 text-lg mt-6 leading-relaxed max-w-xl">An autonomous gospel and Afro-fusion music experience built around songs, stories, scripture reflections, and daily ministration.</p>
       <div class="flex flex-wrap gap-4 mt-9">
         <button onclick="pmrStartAutoMinistry()" class="brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">▶ Start Auto Ministry</button>
+        <a href="#daily" class="border border-[#333] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Today's Devotional</a>
         <a href="#music" class="border border-[#333] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Explore Music</a>
       </div>
     </div>
@@ -95,6 +101,89 @@
     </div>
   </section>
 
+
+  <section id="daily" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-10">
+      <div>
+        <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Daily Ministration</p>
+        <h2 class="text-4xl md:text-6xl font-black uppercase">The site <span class="orange">speaks daily</span></h2>
+      </div>
+      <div class="holy-chip"><span class="live-dot"></span> New worship moment every day</div>
+    </div>
+    <div class="living-grid">
+      <div class="living-card span-7">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">Today’s Devotional</p>
+        <h3 id="dailyTitle" class="text-3xl md:text-5xl font-black mt-4">Loading...</h3>
+        <p id="dailyScripture" class="orange font-black tracking-widest uppercase text-xs mt-3"></p>
+        <p id="dailyReflection" class="devotional-text mt-6"></p>
+        <div class="flex flex-wrap gap-3 mt-7"><button id="dailyPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Today’s Song</button><button onclick="renderDaily(true)" class="btn">Refresh Moment</button></div>
+      </div>
+      <div class="living-card span-5">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">Song of the Week</p>
+        <img id="weekImage" class="w-full h-56 object-cover rounded-2xl mt-5 border border-[#252525]" alt="Song of the week">
+        <h3 id="weekTitle" class="text-3xl font-black mt-5"></h3>
+        <p id="weekArtist" class="text-gray-400 mt-1"></p>
+        <p id="weekLine" class="text-gray-300 mt-4 leading-relaxed"></p>
+        <button id="weekPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5">Play Weekly Song</button>
+      </div>
+      <div class="living-card span-4">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">Holy Fire Wisdom</p>
+        <div class="quote-mark mt-10">“</div>
+        <p id="wisdomQuote" class="text-2xl font-black leading-snug"></p>
+        <button onclick="renderWisdom()" class="btn mt-6">Another Word</button>
+      </div>
+      <div class="living-card span-4">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">From The Author</p>
+        <h3 class="text-3xl font-black mt-8">The Hidden Truth</h3>
+        <p id="hiddenTruthQuote" class="text-gray-300 leading-relaxed mt-5"></p>
+        <p class="text-gray-500 text-xs uppercase tracking-widest mt-5">Author • Songwriter • Vision Builder</p>
+      </div>
+      <div class="living-card span-4">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">Worship Around The World</p>
+        <div id="worldListeners" class="mt-6"></div>
+        <p class="text-gray-500 text-xs mt-4">Live worship pulse updates automatically while visitors stay on the page.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ask" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="living-grid">
+      <div class="living-card span-6">
+        <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Ask Holy Fire</p>
+        <h2 class="text-4xl md:text-5xl font-black uppercase">Let the site recommend <span class="orange">a song</span></h2>
+        <p class="text-gray-400 mt-5 leading-relaxed">This free version works without paid AI. It reads the listener’s words and recommends from your songs, stories, scripture, and themes.</p>
+        <textarea id="askHolyInput" class="holy-textarea mt-6" placeholder="Example: I feel discouraged... I need worship... I want a wedding song... I am thankful..."></textarea>
+        <button onclick="askHolyFire()" class="brand-bg text-black px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase mt-4">Ask Holy Fire</button>
+      </div>
+      <div class="living-card span-6" id="askHolyResult">
+        <p class="orange tracking-[0.25em] text-xs uppercase font-black">Recommendation</p>
+        <h3 class="text-3xl font-black mt-5">Type what you feel.</h3>
+        <p class="text-gray-400 mt-4 leading-relaxed">Holy Fire OS will guide you to a song from the catalog.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dedication" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="os-panel p-6 md:p-10">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <span class="os-pill">Song Dedication</span>
+          <h2 class="text-4xl md:text-6xl font-black mt-5 uppercase">Dedicate a <span class="orange">song</span></h2>
+          <p class="text-gray-300 text-lg leading-relaxed mt-5">Let visitors connect your songs to real life: weddings, birthdays, thanksgiving, encouragement, healing, and special moments.</p>
+          <div class="grid sm:grid-cols-2 gap-4 mt-8"><div class="mini-card"><h3 class="font-black">Wedding</h3><p class="text-gray-400 text-sm mt-2">Perfect for Shawn and Sharon.</p></div><div class="mini-card"><h3 class="font-black">Thanksgiving</h3><p class="text-gray-400 text-sm mt-2">Perfect for Stronger and Wiser.</p></div><div class="mini-card"><h3 class="font-black">Worship</h3><p class="text-gray-400 text-sm mt-2">Perfect for Take Me Deeper.</p></div><div class="mini-card"><h3 class="font-black">Healing</h3><p class="text-gray-400 text-sm mt-2">Perfect for Message.</p></div></div>
+        </div>
+        <div class="bg-[#0d0d0d] border border-[#252525] rounded-[28px] p-5">
+          <input id="dedName" class="holy-input" placeholder="Your name">
+          <select id="dedOccasion" class="holy-select mt-4"><option>Wedding</option><option>Birthday</option><option>Thanksgiving</option><option>Encouragement</option><option>Healing</option><option>Prayer</option></select>
+          <textarea id="dedMessage" class="holy-textarea mt-4" placeholder="Who are you dedicating this song to and why?"></textarea>
+          <button onclick="submitDedication()" class="brand-bg text-black px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase mt-4">Create Dedication</button>
+          <div id="dedResult" class="text-gray-300 mt-5 leading-relaxed"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <section id="music" class="px-6 py-20 max-w-7xl mx-auto">
     <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Latest Releases</p>
     <h2 class="text-4xl md:text-5xl font-black mb-10">NEW <span class="text-gray-400">MUSIC</span></h2>
@@ -114,7 +203,7 @@
   </section>
 
   <section id="contact" class="px-6 py-20 max-w-7xl mx-auto">
-    <div class="card p-8 md:p-12 text-center"><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Connect</p><h2 class="text-4xl md:text-5xl font-black">BOOK AN ARTIST OR FEATURE</h2><p class="text-gray-400 mt-5 max-w-2xl mx-auto">For bookings, collaborations, music features, interviews, and label conversations.</p><a href="mailto:promediarecords@gmail.com" class="inline-flex mt-8 brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">Contact Pro Media Records</a></div>
+    <div class="card p-8 md:p-12 text-center"><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Connect</p><h2 class="text-4xl md:text-5xl font-black">BOOK AN ARTIST OR FEATURE</h2><p class="text-gray-400 mt-5 max-w-2xl mx-auto">For bookings, collaborations, music features, interviews, and label conversations.</p><a href="mailto:promediacenter4music@gmail.com" class="inline-flex mt-8 brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">Contact Pro Media Records</a></div>
   </section>
 </main>
 
@@ -131,39 +220,175 @@
   <div class="w-12 h-12 bg-[#222] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
   <div class="flex-1 overflow-hidden"><div id="nowTitle" class="font-bold truncate">Select a track</div><div id="nowArtist" class="text-gray-400 text-sm truncate">Pro Media Records</div></div>
   <button type="button" onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold text-black">▶</button>
+  <button type="button" onclick="toggleAutoPlayMode()" id="autoModeBtn" class="hidden md:inline-flex border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Auto: ON</button>
 </div>
 
 <div id="modal" class="hidden fixed inset-0 bg-black/95 z-[9999] p-5 flex items-center justify-center">
   <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded z-[10000]">← Back</button>
   <a id="youtubeDirect" href="#" target="_blank" class="absolute top-5 right-5 brand-bg text-black px-4 py-2 rounded font-black text-xs tracking-widest uppercase z-[10000]">Open YouTube</a>
-  <iframe id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  <div id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl overflow-hidden bg-[#222]"></div>
 </div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
 const SONGS = [
+  {id:'shawn-sharon-original', title:'Shawn & Sharon', artist:'Zik Blue', youtube:'Ju6q5NzjbSg', image:'https://img.youtube.com/vi/Ju6q5NzjbSg/hqdefault.jpg', theme:'1 Corinthians 13:13 • Faith, hope and love', mood:'love celebration wedding covenant', story:'A wedding soundtrack celebrating covenant love, joy, and a beautiful beginning for Shawn and Sharon.'},
   {id:'shawn-and-sharon', title:'Shawn and Sharon', artist:'Zik Blue', youtube:'fSVPa7Bpsao', image:'https://img.youtube.com/vi/fSVPa7Bpsao/hqdefault.jpg', theme:'Love • Covenant • Celebration', mood:'love celebration wedding', story:'Created as a wedding gift for Shawn and Sharon. This song celebrates love as a beautiful thing and turns a special union into a lasting sound of joy.'},
   {id:'take-me-deeper', title:'Take Me Deeper', artist:'Ziyana Eya', youtube:'0lB9xV77wmQ', image:'https://img.youtube.com/vi/0lB9xV77wmQ/hqdefault.jpg', theme:'Psalm 42:7 • Deep calls unto deep', mood:'deeper worship glory faith', story:'A song for more of God’s glory. It carries a cry for a deeper walk with God, beyond the surface and into a stronger place of worship and surrender.'},
   {id:'bege-zai-tashi', title:'Bege Zai Tashi', artist:'Rise One', youtube:'rO465paoc-s', image:'https://img.youtube.com/vi/rO465paoc-s/hqdefault.jpg', theme:'Isaiah 60:1 • Arise and shine', mood:'rising hope strength', story:'A sound of hope rising again. Bege Zai Tashi speaks to people who have been through difficult seasons but still believe that light, strength, and joy will rise.'},
   {id:'stronger-and-wiser', title:'Stronger and Wiser', artist:'Holy Fire', youtube:'8ReaZcQYpbA', image:'https://img.youtube.com/vi/8ReaZcQYpbA/hqdefault.jpg', theme:'Psalm 118:23 • The Lord has done this', mood:'gratitude testimony stronger wiser', story:'A song of gratitude. God came through, and the testimony is clear: after the journey, there is strength, wisdom, and a new reason to give thanks.'},
+
+  {id:'holy-fire-many-stories', title:'Many Stories', artist:'Holy Fire', youtube:'bEHi5onUR8w', image:'https://img.youtube.com/vi/bEHi5onUR8w/hqdefault.jpg', theme:'Psalm 40:2-3 • A new song after many stories', mood:'testimony healing hope story', story:'Many Stories carries the weight of testimony — the battles, lessons, and victories that become a song of hope.'},
+  {id:'holy-fire-remember-me', title:'Remember Me', artist:'Holy Fire', youtube:'PZYLwQu_eP4', image:'https://img.youtube.com/vi/PZYLwQu_eP4/hqdefault.jpg', theme:'Luke 23:42 • Lord, remember me', mood:'mercy prayer remembrance hope', story:'Remember Me is a prayer from the heart — a cry for mercy, divine attention, and God’s remembrance in every season.'},
+  {id:'holy-fire-nor-be-true', title:'Nor Be True', artist:'Holy Fire', youtube:'gK-YkzzjHnE', image:'https://img.youtube.com/vi/gK-YkzzjHnE/hqdefault.jpg', theme:'Isaiah 54:17 • No weapon shall prosper', mood:'victory fire protection deliverance', story:'Nor Be True brings positive gospel dancehall energy with a message of confidence, protection, and spiritual victory.'},
+  {id:'holy-spell-bless-you', title:'Bless You', artist:'Holy Spell', youtube:'', image:'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="%23080808"/><stop offset="1" stop-color="%23ff4e00"/></linearGradient></defs><rect width="900" height="600" fill="url(%23g)"/><text x="60" y="250" font-size="70" font-family="Arial" font-weight="900" fill="white">HOLY SPELL</text><text x="60" y="335" font-size="52" font-family="Arial" font-weight="900" fill="%23ffb088">BLESS YOU</text><text x="60" y="410" font-size="26" font-family="Arial" fill="white">Prophetic Afro-Spiritual Sound</text></svg>', theme:'Numbers 6:24-26 • The Lord bless you and keep you', mood:'blessing prayer prophetic worship', story:'Bless You introduces Holy Spell as a prophetic Afro-spiritual sound — music designed to bless, uplift, and speak life.'},
   {id:'promise', title:'Promise', artist:'Ziyana Eya', youtube:'E29YQ8zatnI', image:'https://img.youtube.com/vi/E29YQ8zatnI/hqdefault.jpg', theme:'2 Corinthians 1:20 • God’s promises are Yes and Amen', mood:'promise faith waiting trust', story:'A song for anyone holding on to what God has spoken. Promise reminds the listener that delay is not denial and that God’s word remains faithful.'},
   {id:'message', title:'Message', artist:'Zik Blue', youtube:'5CiEcP3xfzk', image:'https://img.youtube.com/vi/5CiEcP3xfzk/hqdefault.jpg', theme:'Psalm 34:18 • God is close to the brokenhearted', mood:'healing emotion story testimony', story:'A deeply emotional song written from real experience. Message carries the weight of what was endured, the lessons learned, and the courage to speak through music.'}
 ];
 let currentId = null; let flowTimer = null; let flowIndex = 0;
+let ytPlayer = null;
+let ytReady = false;
+let autoPlayMode = true;
+let pendingVideoId = null;
 const artists = [...new Set(SONGS.map(s=>s.artist))].map(name=>({name, image:(SONGS.find(s=>s.artist===name)||SONGS[0]).image, bio: artistBio(name)}));
-function artistBio(name){return ({'Zik Blue':'A Pro Media Records artist with emotional delivery, storytelling strength, and Afro-fusion energy.','Ziyana Eya':'A worship voice carrying depth, devotion, promise, and spiritual atmosphere.','Rise One':'A sound of hope, encouragement, and rising faith.','Holy Fire':'A spiritual fire voice with street gospel energy, testimony, and worship conviction.'}[name] || 'Pro Media Records artist.');}
+function artistBio(name){return ({'Zik Blue':'A Pro Media Records artist with emotional delivery, storytelling strength, and Afro-fusion energy.','Ziyana Eya':'A worship voice carrying depth, devotion, promise, and spiritual atmosphere.','Rise One':'A sound of hope, encouragement, and rising faith.','Holy Fire':'A spiritual fire voice with street gospel energy, testimony, and worship conviction.','Holy Spell':'A prophetic Afro-spiritual music artist with blessing, chant, prayer, and spiritual atmosphere.'}[name] || 'Pro Media Records artist.');}
 function showHome(){document.getElementById('artistProfile').classList.add('hidden');document.getElementById('homeView').classList.remove('hidden');}
 function selectTrack(id, open=false){const s=SONGS.find(x=>x.id===id)||SONGS[0];currentId=s.id;document.getElementById('miniImg').src=s.image;document.getElementById('nowTitle').textContent=s.title;document.getElementById('nowArtist').textContent=s.artist;document.querySelectorAll('[data-track-card]').forEach(c=>c.classList.toggle('active-card',c.dataset.trackCard===id));if(open)openCurrent();}
-function openCurrent(){const s=SONS_SAFE();if(!s)return;document.getElementById('modal').classList.remove('hidden');document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube;document.getElementById('player').src='https://www.youtube.com/embed/'+s.youtube+'?autoplay=1';}
 function SONS_SAFE(){return SONGS.find(x=>x.id===currentId)||SONGS[0];}
-function closeVideo(){document.getElementById('modal').classList.add('hidden');document.getElementById('player').src='';}
-function songCard(s){return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">Play</button><a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a></div></div></div>`}
+function currentIndex(){return Math.max(0, SONGS.findIndex(x=>x.id===currentId));}
+function nextSong(){const next = SONGS[(currentIndex()+1) % SONGS.length]; selectTrack(next.id,false); renderMinistration(next); return next;}
+function toggleAutoPlayMode(){autoPlayMode=!autoPlayMode;const btn=document.getElementById('autoModeBtn');if(btn)btn.textContent='Auto: '+(autoPlayMode?'ON':'OFF');}
+function onYouTubeIframeAPIReady(){
+  ytReady=true;
+  if(pendingVideoId){const v=pendingVideoId; pendingVideoId=null; ensurePlayer(v);}
+}
+function getPlayerOrigin(){
+  try{return window.location.origin && window.location.origin !== 'null' ? window.location.origin : 'https://promedia-records.vercel.app';}
+  catch(e){return 'https://promedia-records.vercel.app';}
+}
+function ensurePlayer(videoId){
+  const holder=document.getElementById('player');
+  if(!holder) return;
+  // If the YouTube API is slow or blocked, create a normal iframe fallback so the user still sees the player.
+  if(!window.YT || !YT.Player){
+    pendingVideoId=videoId;
+    holder.innerHTML=`<iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(getPlayerOrigin())}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    setTimeout(()=>{ if(window.YT && YT.Player && !ytPlayer && pendingVideoId){ const v=pendingVideoId; pendingVideoId=null; ensurePlayer(v); } },1200);
+    return;
+  }
+  if(!ytPlayer){
+    holder.innerHTML='';
+    ytPlayer = new YT.Player('player',{
+      videoId:videoId,
+      playerVars:{autoplay:1,playsinline:1,rel:0,modestbranding:1,enablejsapi:1,origin:getPlayerOrigin()},
+      events:{
+        onReady:(e)=>{try{e.target.playVideo();}catch(err){}},
+        onError:()=>{showPlayerFallback(videoId);},
+        onStateChange:(e)=>{
+          if(e.data===YT.PlayerState.ENDED && autoPlayMode){
+            const n=nextSong();
+            if(n.youtube) loadVideo(n.youtube); else nextSong();
+          }
+        }
+      }
+    });
+  } else {
+    loadVideo(videoId);
+  }
+}
+function showPlayerFallback(videoId){
+  const holder=document.getElementById('player');
+  if(!holder) return;
+  holder.innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#111] rounded-xl border border-[#333]"><p class="text-xl font-black orange">YouTube blocked the embedded player.</p><p class="text-gray-400 mt-3 max-w-md">Tap Open YouTube to play this song. On Vercel, most videos should play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/watch?v=${videoId}" target="_blank">Open YouTube</a></div>`;
+}
+function loadVideo(videoId){
+  if(ytPlayer && ytPlayer.loadVideoById){
+    try{ytPlayer.loadVideoById(videoId);return;}catch(e){}
+  }
+  ensurePlayer(videoId);
+}
+function openCurrent(){
+  const s=SONS_SAFE();if(!s)return;
+  document.getElementById('modal').classList.remove('hidden');
+  if(!s.youtube){
+    document.getElementById('youtubeDirect').href='https://www.youtube.com/@promediarecordsinternational';
+    document.getElementById('player').innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#111] rounded-xl border border-[#333]"><p class="text-2xl font-black orange">${s.title}</p><p class="text-gray-400 mt-2">${s.artist}</p><p class="text-gray-300 mt-5 max-w-lg">This Holy Spell song has been restored in the catalog. Add the exact YouTube link later and it will play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/@promediarecordsinternational" target="_blank">Open Pro Media Records YouTube</a></div>`;
+    return;
+  }
+  document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube;
+  ensurePlayer(s.youtube);
+}
+function closeVideo(){
+  document.getElementById('modal').classList.add('hidden');
+  if(ytPlayer && ytPlayer.stopVideo){try{ytPlayer.stopVideo();}catch(e){}}
+}
+function songCard(s){const yt=s.youtube?`<a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a>`:`<a href="https://www.youtube.com/@promediarecordsinternational" target="_blank" class="btn">Channel</a>`;return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">${s.youtube?'Play':'View'}</button>${yt}</div></div></div>`}
 function renderGrids(){document.getElementById('musicGrid').innerHTML=SONGS.map(songCard).join('');document.getElementById('artistGrid').innerHTML=artists.map(a=>`<div onclick="openArtist('${a.name.replace(/'/g,"\\'")}')" class="card cursor-pointer"><img src="${a.image}" class="w-full h-64 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">Artist</p><h3 class="text-2xl font-black mt-2">${a.name}</h3><p class="text-gray-400 text-sm mt-3">${SONGS.filter(s=>s.artist===a.name).length} song(s) in Holy Fire OS</p></div></div>`).join('');}
 function openArtist(name){const a=artists.find(x=>x.name===name);const songs=SONGS.filter(s=>s.artist===name);document.getElementById('homeView').classList.add('hidden');document.getElementById('artistProfile').classList.remove('hidden');document.getElementById('profileImg').src=a.image;document.getElementById('profileName').textContent=a.name;document.getElementById('profileBio').textContent=a.bio;document.getElementById('profileSongTitle').textContent=a.name+' Songs';document.getElementById('profileSongs').innerHTML=songs.map(songCard).join('');window.scrollTo({top:0,behavior:'smooth'});}
 function todayIndex(){const now=new Date();const seed=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);return seed%SONGS.length;}
-function renderMinistration(song){document.getElementById('osSongImage').src=song.image;document.getElementById('osSongTitle').textContent=song.title;document.getElementById('osSongArtist').textContent=song.artist;document.getElementById('osSongStory').textContent=song.story;document.getElementById('osSongScripture').textContent=song.theme;document.getElementById('osSongMood').textContent=song.mood.split(' ').map(w=>w[0].toUpperCase()+w.slice(1)).join(' • ');document.getElementById('osYouTubeBtn').href='https://www.youtube.com/watch?v='+song.youtube;document.getElementById('osPlayBtn').onclick=()=>selectTrack(song.id,true);}
+function renderMinistration(song){document.getElementById('osSongImage').src=song.image;document.getElementById('osSongTitle').textContent=song.title;document.getElementById('osSongArtist').textContent=song.artist;document.getElementById('osSongStory').textContent=song.story;document.getElementById('osSongScripture').textContent=song.theme;document.getElementById('osSongMood').textContent=song.mood.split(' ').map(w=>w[0].toUpperCase()+w.slice(1)).join(' • ');document.getElementById('osYouTubeBtn').href=song.youtube?'https://www.youtube.com/watch?v='+song.youtube:'https://www.youtube.com/@promediarecordsinternational';document.getElementById('osPlayBtn').onclick=()=>selectTrack(song.id,true);}
 function pmrStartAutoMinistry(){renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;clearInterval(flowTimer);flowTimer=setInterval(()=>{renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;},12000);document.getElementById('autonomous').scrollIntoView({behavior:'smooth'});}
 function pmrRecommendMood(mood, ev){document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));if(ev&&ev.target)ev.target.classList.add('active');const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];renderMinistration(song);selectTrack(song.id,false);document.getElementById('osRecommendation').innerHTML=`<p class="orange text-xs uppercase tracking-widest font-black">Recommended Song</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 mt-3">${song.story}</p><button class="brand-bg px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black mt-4" onclick="selectTrack('${song.id}', true)">Play Recommendation</button>`;}
-document.addEventListener('DOMContentLoaded',()=>{renderGrids();flowIndex=todayIndex();renderMinistration(SONGS[flowIndex]);selectTrack(SONGS[0].id,false);});
+
+const WISDOM_QUOTES=[
+  'Music is prayer wearing a melody.',
+  'Worship is not entertainment. It is surrender.',
+  'Songs outlive sermons because melodies remain when words are forgotten.',
+  'A testimony becomes louder when it finds a sound.',
+  'When words are not enough, worship carries the heart.'
+];
+const HIDDEN_QUOTES=[
+  'Every seeker of knowledge must know that there is always something waiting to be discovered.',
+  'Purpose becomes powerful when it is given structure, sound, and courage.',
+  'The hidden truth is that every gift must be released, not buried.',
+  'A song can become a message, and a message can become a movement.'
+];
+const WORLD_BASE=[['Nigeria',18],['United States',12],['Canada',5],['United Kingdom',7],['Germany',3],['South Africa',4]];
+function dayNumber(){const now=new Date();return Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);}
+function weekNumber(){const now=new Date();return Math.floor(dayNumber()/7);}
+function devotionalFor(song){
+  if(song.id==='take-me-deeper')return 'There are moments when the soul wants more than success, more than attention, and more than noise. It simply wants more of God. Today, let this song become a prayer for depth, surrender, and glory.';
+  if(song.id==='message')return 'Some pain does not disappear until it is spoken, sung, or surrendered. This song reminds us that even heavy stories can become healing when God gives them a voice.';
+  if(song.id==='shawn-and-sharon')return 'Love is a gift that deserves celebration. Today’s ministration reminds us that covenant, joy, and commitment are beautiful when they are honored with gratitude.';
+  if(song.id==='bege-zai-tashi')return 'No season stays dark forever. Hope can rise again. Strength can rise again. Joy can rise again. Let this song remind you to arise and shine.';
+  if(song.id==='stronger-and-wiser')return 'When God brings you through, you do not come out empty. You come out stronger, wiser, and more grateful. Today is a reminder to give thanks for survival and growth.';
+  if(song.id==='promise')return 'God’s promises do not expire because time has passed. Faith waits with confidence. Let this song strengthen your heart while you hold on.';
+  return song.story;
+}
+function renderDaily(random=false){
+  const idx=random?Math.floor(Math.random()*SONGS.length):dayNumber()%SONGS.length; const song=SONGS[idx];
+  document.getElementById('dailyTitle').textContent=song.title+' — '+song.artist;
+  document.getElementById('dailyScripture').textContent=song.theme;
+  document.getElementById('dailyReflection').textContent=devotionalFor(song);
+  document.getElementById('dailyPlay').onclick=()=>selectTrack(song.id,true);
+}
+function renderWeekly(){
+  const song=SONGS[weekNumber()%SONGS.length];
+  document.getElementById('weekImage').src=song.image;document.getElementById('weekTitle').textContent=song.title;document.getElementById('weekArtist').textContent=song.artist;document.getElementById('weekLine').textContent=song.story;document.getElementById('weekPlay').onclick=()=>selectTrack(song.id,true);
+}
+function renderWisdom(){document.getElementById('wisdomQuote').textContent=WISDOM_QUOTES[Math.floor(Math.random()*WISDOM_QUOTES.length)];document.getElementById('hiddenTruthQuote').textContent=HIDDEN_QUOTES[Math.floor(Math.random()*HIDDEN_QUOTES.length)];}
+function renderWorld(){
+  const tick=Math.floor(Date.now()/5000); document.getElementById('worldListeners').innerHTML=WORLD_BASE.map((r,i)=>{const v=r[1]+((tick+i*3)%9);return `<div class="world-row"><span class="text-gray-300">${r[0]}</span><span class="font-black orange">${v} listening</span></div>`}).join('');
+}
+function askHolyFire(){
+  const q=(document.getElementById('askHolyInput').value||'').toLowerCase(); let mood='';
+  if(q.includes('wedding')||q.includes('love')||q.includes('marry'))mood='love';
+  else if(q.includes('deep')||q.includes('worship')||q.includes('god')||q.includes('glory'))mood='deeper';
+  else if(q.includes('hope')||q.includes('rise')||q.includes('discourage')||q.includes('sad'))mood='rising';
+  else if(q.includes('thank')||q.includes('grateful')||q.includes('stronger')||q.includes('wiser'))mood='gratitude';
+  else if(q.includes('promise')||q.includes('waiting')||q.includes('trust'))mood='promise';
+  else mood='healing';
+  const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];
+  const reason=devotionalFor(song);
+  document.getElementById('askHolyResult').innerHTML=`<p class="orange tracking-[0.25em] text-xs uppercase font-black">Holy Fire Recommends</p><h3 class="text-3xl md:text-4xl font-black mt-5">${song.title}</h3><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 leading-relaxed mt-5">${reason}</p><p class="orange font-black tracking-widest uppercase text-xs mt-5">${song.theme}</p><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5">Play Recommendation</button>`;
+}
+function submitDedication(){
+  const name=document.getElementById('dedName').value||'Friend'; const occ=document.getElementById('dedOccasion').value; const msg=document.getElementById('dedMessage').value||'A special dedication request.';
+  let mood=occ==='Wedding'?'love':occ==='Thanksgiving'?'gratitude':occ==='Healing'?'healing':occ==='Prayer'?'deeper':'promise'; const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];
+  document.getElementById('dedResult').innerHTML=`<div class="mini-card"><p class="orange text-xs uppercase tracking-widest font-black">Dedication Created</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">Recommended for ${occ}</p><p class="text-gray-300 mt-3">${name}, this dedication has been matched with a song from Pro Media Records. ${msg}</p><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-4">Play Dedication Song</button></div>`;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{renderGrids();flowIndex=todayIndex();renderMinistration(SONGS[flowIndex]);selectTrack(SONGS[0].id,false);renderDaily(false);renderWeekly();renderWisdom();renderWorld();setInterval(renderWorld,5000);});
 </script>
 </body>
 </html>
