@@ -226,7 +226,19 @@
 <div id="modal" class="hidden fixed inset-0 bg-black/95 z-[9999] p-5 flex items-center justify-center">
   <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded z-[10000]">← Back</button>
   <a id="youtubeDirect" href="#" target="_blank" class="absolute top-5 right-5 brand-bg text-black px-4 py-2 rounded font-black text-xs tracking-widest uppercase z-[10000]">Open YouTube</a>
-  <div id="player" class="w-[95%] h-[65%] md:w-[80%] md:h-[75%] rounded-xl overflow-hidden bg-[#222]"></div>
+  <div class="w-[95%] md:w-[80%] flex flex-col gap-4 items-stretch">
+    <div id="djBox" class="rounded-2xl border border-[#333] bg-[#111] p-4 md:p-5 shadow-2xl">
+      <div class="flex flex-col md:flex-row md:items-center gap-3 justify-between">
+        <div>
+          <p class="orange tracking-[0.25em] text-[10px] md:text-xs uppercase font-black">🔥 Holy Fire AI Radio DJ</p>
+          <h3 id="djLine" class="text-white text-lg md:text-2xl font-black mt-2">Welcome back to Holy Fire Radio.</h3>
+          <p id="djSubLine" class="text-gray-400 text-sm md:text-base mt-1">The DJ introduces each song before it plays.</p>
+        </div>
+        <button id="djVoiceBtn" onclick="toggleDjVoice()" class="border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300 whitespace-nowrap">DJ Voice: ON</button>
+      </div>
+    </div>
+    <div id="player" class="w-full h-[56vh] md:h-[68vh] rounded-xl overflow-hidden bg-[#222]"></div>
+  </div>
 </div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
@@ -250,6 +262,8 @@ let ytPlayer = null;
 let ytReady = false;
 let autoPlayMode = true;
 let pendingVideoId = null;
+let djVoiceEnabled = true;
+let djSpeaking = false;
 const artists = [...new Set(SONGS.map(s=>s.artist))].map(name=>({name, image:(SONGS.find(s=>s.artist===name)||SONGS[0]).image, bio: artistBio(name)}));
 function artistBio(name){return ({'Zik Blue':'A Pro Media Records artist with emotional delivery, storytelling strength, and Afro-fusion energy.','Ziyana Eya':'A worship voice carrying depth, devotion, promise, and spiritual atmosphere.','Rise One':'A sound of hope, encouragement, and rising faith.','Holy Fire':'A spiritual fire voice with street gospel energy, testimony, and worship conviction.','Holy Spell':'A prophetic Afro-spiritual music artist with blessing, chant, prayer, and spiritual atmosphere.'}[name] || 'Pro Media Records artist.');}
 function showHome(){document.getElementById('artistProfile').classList.add('hidden');document.getElementById('homeView').classList.remove('hidden');}
@@ -265,6 +279,62 @@ function onYouTubeIframeAPIReady(){
 function getPlayerOrigin(){
   try{return window.location.origin && window.location.origin !== 'null' ? window.location.origin : 'https://promedia-records.vercel.app';}
   catch(e){return 'https://promedia-records.vercel.app';}
+}
+function toggleDjVoice(){
+  djVoiceEnabled=!djVoiceEnabled;
+  const btn=document.getElementById('djVoiceBtn');
+  if(btn) btn.textContent='DJ Voice: '+(djVoiceEnabled?'ON':'OFF');
+  if(!djVoiceEnabled && window.speechSynthesis){try{speechSynthesis.cancel();}catch(e){}}
+}
+function djIntroFor(song){
+  const openings=[
+    'Welcome back to Holy Fire Radio.',
+    'You are listening to Pro Media Records.',
+    'Worship never sleeps. This is Holy Fire OS.',
+    'This is your next ministration on Holy Fire Radio.'
+  ];
+  const blessings=[
+    'May this song bless your heart.',
+    'Let this sound minister strength, peace, and faith to you.',
+    'Receive the message behind the music.',
+    'Stay connected. Let the worship speak.'
+  ];
+  const index=Math.max(0, SONGS.findIndex(x=>x.id===song.id));
+  return `${openings[index % openings.length]} Today's worship session begins with ${song.title} by ${song.artist}. ${blessings[index % blessings.length]}`;
+}
+function setDjStatus(song, text, sub){
+  const line=document.getElementById('djLine');
+  const subLine=document.getElementById('djSubLine');
+  if(line) line.textContent=text || djIntroFor(song);
+  if(subLine) subLine.textContent=sub || (song ? song.theme : 'The DJ introduces each song before it plays.');
+}
+function speakDjThen(song, callback){
+  const text=djIntroFor(song);
+  setDjStatus(song,text,'Speaking now. The song will begin after the intro.');
+  if(!djVoiceEnabled || !('speechSynthesis' in window)){
+    setTimeout(callback,450);
+    return;
+  }
+  try{
+    speechSynthesis.cancel();
+    djSpeaking=true;
+    const u=new SpeechSynthesisUtterance(text);
+    u.rate=0.92; u.pitch=0.95; u.volume=1;
+    const voices=speechSynthesis.getVoices ? speechSynthesis.getVoices() : [];
+    const preferred=voices.find(v=>/Google US English|Microsoft David|Microsoft Mark|English/i.test(v.name+v.lang));
+    if(preferred) u.voice=preferred;
+    let done=false;
+    const finish=()=>{ if(done) return; done=true; djSpeaking=false; setDjStatus(song,`Now playing: ${song.title}`,`${song.artist} • ${song.theme}`); callback(); };
+    u.onend=finish; u.onerror=finish;
+    speechSynthesis.speak(u);
+    setTimeout(finish, Math.max(4800, Math.min(12000, text.length*58)));
+  }catch(e){
+    setTimeout(callback,450);
+  }
+}
+function playSongWithDj(song){
+  if(!song || !song.youtube) return;
+  speakDjThen(song,()=>loadVideo(song.youtube));
 }
 function ensurePlayer(videoId){
   const holder=document.getElementById('player');
@@ -287,7 +357,7 @@ function ensurePlayer(videoId){
         onStateChange:(e)=>{
           if(e.data===YT.PlayerState.ENDED && autoPlayMode){
             const n=nextSong();
-            if(n.youtube) loadVideo(n.youtube); else nextSong();
+            if(n.youtube) playSongWithDj(n); else nextSong();
           }
         }
       }
@@ -316,12 +386,14 @@ function openCurrent(){
     return;
   }
   document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube;
-  ensurePlayer(s.youtube);
+  playSongWithDj(s);
 }
 function closeVideo(){
   document.getElementById('modal').classList.add('hidden');
   if(ytPlayer && ytPlayer.stopVideo){try{ytPlayer.stopVideo();}catch(e){}}
+  if(window.speechSynthesis){try{speechSynthesis.cancel();}catch(e){}}
 }
+
 function songCard(s){const yt=s.youtube?`<a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a>`:`<a href="https://www.youtube.com/@promediarecordsinternational" target="_blank" class="btn">Channel</a>`;return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">${s.youtube?'Play':'View'}</button>${yt}</div></div></div>`}
 function renderGrids(){document.getElementById('musicGrid').innerHTML=SONGS.map(songCard).join('');document.getElementById('artistGrid').innerHTML=artists.map(a=>`<div onclick="openArtist('${a.name.replace(/'/g,"\\'")}')" class="card cursor-pointer"><img src="${a.image}" class="w-full h-64 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">Artist</p><h3 class="text-2xl font-black mt-2">${a.name}</h3><p class="text-gray-400 text-sm mt-3">${SONGS.filter(s=>s.artist===a.name).length} song(s) in Holy Fire OS</p></div></div>`).join('');}
 function openArtist(name){const a=artists.find(x=>x.name===name);const songs=SONGS.filter(s=>s.artist===name);document.getElementById('homeView').classList.add('hidden');document.getElementById('artistProfile').classList.remove('hidden');document.getElementById('profileImg').src=a.image;document.getElementById('profileName').textContent=a.name;document.getElementById('profileBio').textContent=a.bio;document.getElementById('profileSongTitle').textContent=a.name+' Songs';document.getElementById('profileSongs').innerHTML=songs.map(songCard).join('');window.scrollTo({top:0,behavior:'smooth'});}
