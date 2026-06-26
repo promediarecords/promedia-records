@@ -25,6 +25,7 @@
     <a href="#autonomous" onclick="showHome()">Holy Fire OS</a>
     <a href="#daily" onclick="showHome()">Daily</a>
     <a href="#ask" onclick="showHome()">Ask Holy Fire</a>
+    <a href="#share" onclick="showHome()">Share</a>
     <a href="#music" onclick="showHome()">Music</a>
     <a href="#artists" onclick="showHome()">Artists</a>
     <a href="#about" onclick="showHome()">Label</a>
@@ -91,7 +92,7 @@
             <div class="mini-card"><p class="text-gray-500 text-xs uppercase tracking-widest">Scripture / Theme</p><p id="osSongScripture" class="font-bold mt-2"></p></div>
             <div class="mini-card"><p class="text-gray-500 text-xs uppercase tracking-widest">Best For</p><p id="osSongMood" class="font-bold mt-2"></p></div>
           </div>
-          <div class="flex flex-wrap gap-3 mt-5"><button id="osPlayBtn" class="brand-bg px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black">Play Song</button><a id="osYouTubeBtn" target="_blank" class="btn">Open YouTube</a></div>
+          <div class="flex flex-wrap gap-3 mt-5"><button id="osPlayBtn" class="brand-bg px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black">Play Song</button><button id="osShareBtn" class="btn">Share on WhatsApp</button><button id="osEncourageBtn" class="btn">Send Encouragement</button><a id="osYouTubeBtn" target="_blank" class="btn">Open YouTube</a></div>
         </div>
       </div>
       <div class="grid lg:grid-cols-2 gap-6 mt-8">
@@ -116,7 +117,7 @@
         <h3 id="dailyTitle" class="text-3xl md:text-5xl font-black mt-4">Loading...</h3>
         <p id="dailyScripture" class="orange font-black tracking-widest uppercase text-xs mt-3"></p>
         <p id="dailyReflection" class="devotional-text mt-6"></p>
-        <div class="flex flex-wrap gap-3 mt-7"><button id="dailyPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Today’s Song</button><button onclick="renderDaily(true)" class="btn">Refresh Moment</button></div>
+        <div class="flex flex-wrap gap-3 mt-7"><button id="dailyPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Today’s Song</button><button id="dailyShare" class="btn">Share Today’s Ministration</button><button onclick="renderDaily(true)" class="btn">Refresh Moment</button></div>
       </div>
       <div class="living-card span-5">
         <p class="orange tracking-[0.25em] text-xs uppercase font-black">Song of the Week</p>
@@ -124,7 +125,7 @@
         <h3 id="weekTitle" class="text-3xl font-black mt-5"></h3>
         <p id="weekArtist" class="text-gray-400 mt-1"></p>
         <p id="weekLine" class="text-gray-300 mt-4 leading-relaxed"></p>
-        <button id="weekPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5">Play Weekly Song</button>
+        <div class="flex flex-wrap gap-3 mt-5"><button id="weekPlay" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Weekly Song</button><button id="weekShare" class="btn">Share Weekly Song</button></div>
       </div>
       <div class="living-card span-4">
         <p class="orange tracking-[0.25em] text-xs uppercase font-black">Holy Fire Wisdom</p>
@@ -184,6 +185,30 @@
   </section>
 
 
+
+  <section id="share" class="px-6 py-20 max-w-7xl mx-auto">
+    <div class="os-panel p-6 md:p-10 glow">
+      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+        <div>
+          <span class="os-pill">WhatsApp Ministry Sharing</span>
+          <h2 class="text-4xl md:text-6xl font-black mt-5 uppercase">Send a <span class="orange">song</span> to someone</h2>
+          <p class="text-gray-300 text-lg leading-relaxed mt-5">Every song in the catalog now has a WhatsApp message. Visitors can share the current song, today’s ministration, encouragement, wedding blessings, thanksgiving, and prayer moments.</p>
+          <div class="flex flex-wrap gap-3 mt-7">
+            <button onclick="shareCurrentSong()" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Share Current Song</button>
+            <button onclick="shareDailyMinistration()" class="btn">Share Daily Ministration</button>
+            <button onclick="shareEncouragement()" class="btn">Send Encouragement</button>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="mini-card"><p class="orange tracking-[0.25em] text-xs uppercase font-black">For Weddings</p><h3 class="text-2xl font-black mt-3">Share Shawn and Sharon</h3><p class="text-gray-400 mt-3 text-sm leading-relaxed">A beautiful song for love, covenant, and celebration.</p><button onclick="shareSong('shawn-and-sharon','wedding')" class="btn mt-4">Share Wedding Song</button></div>
+          <div class="mini-card"><p class="orange tracking-[0.25em] text-xs uppercase font-black">For Worship</p><h3 class="text-2xl font-black mt-3">Share Take Me Deeper</h3><p class="text-gray-400 mt-3 text-sm leading-relaxed">For someone seeking more of God’s glory.</p><button onclick="shareSong('take-me-deeper','worship')" class="btn mt-4">Share Worship Song</button></div>
+          <div class="mini-card"><p class="orange tracking-[0.25em] text-xs uppercase font-black">For Thanksgiving</p><h3 class="text-2xl font-black mt-3">Share Stronger and Wiser</h3><p class="text-gray-400 mt-3 text-sm leading-relaxed">For someone thanking God for coming through.</p><button onclick="shareSong('stronger-and-wiser','gratitude')" class="btn mt-4">Share Thanksgiving Song</button></div>
+          <div class="mini-card"><p class="orange tracking-[0.25em] text-xs uppercase font-black">For Healing</p><h3 class="text-2xl font-black mt-3">Share Message</h3><p class="text-gray-400 mt-3 text-sm leading-relaxed">For someone carrying emotions and needing strength.</p><button onclick="shareSong('message','healing')" class="btn mt-4">Share Healing Song</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="music" class="px-6 py-20 max-w-7xl mx-auto">
     <p class="orange tracking-[0.35em] text-xs uppercase mb-3">Latest Releases</p>
     <h2 class="text-4xl md:text-5xl font-black mb-10">NEW <span class="text-gray-400">MUSIC</span></h2>
@@ -220,6 +245,7 @@
   <div class="w-12 h-12 bg-[#222] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
   <div class="flex-1 overflow-hidden"><div id="nowTitle" class="font-bold truncate">Select a track</div><div id="nowArtist" class="text-gray-400 text-sm truncate">Pro Media Records</div></div>
   <button type="button" onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold text-black">▶</button>
+  <button type="button" onclick="shareCurrentSong()" class="hidden sm:inline-flex border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Share</button>
   <button type="button" onclick="toggleAutoPlayMode()" id="autoModeBtn" class="hidden md:inline-flex border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Auto: ON</button>
 </div>
 
@@ -394,11 +420,40 @@ function closeVideo(){
   if(window.speechSynthesis){try{speechSynthesis.cancel();}catch(e){}}
 }
 
-function songCard(s){const yt=s.youtube?`<a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a>`:`<a href="https://www.youtube.com/@promediarecordsinternational" target="_blank" class="btn">Channel</a>`;return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">${s.youtube?'Play':'View'}</button>${yt}</div></div></div>`}
+function songCard(s){const yt=s.youtube?`<a href="https://www.youtube.com/watch?v=${s.youtube}" target="_blank" class="btn">YouTube</a>`:`<a href="https://www.youtube.com/@promediarecordsinternational" target="_blank" class="btn">Channel</a>`;return `<div class="card" data-track-card="${s.id}"><img src="${s.image}" class="w-full h-56 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">${s.artist}</p><h3 class="text-2xl font-black mt-2">${s.title}</h3><p class="text-gray-400 text-sm mt-3 leading-relaxed">${s.story}</p><p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">${s.theme}</p><div class="flex flex-wrap gap-3 mt-5"><button onclick="selectTrack('${s.id}', true)" class="brand-bg text-black px-4 py-3 rounded font-black text-xs tracking-widest uppercase">${s.youtube?'Play':'View'}</button><button onclick="shareSong('${s.id}')" class="btn">WhatsApp</button>${yt}</div></div></div>`}
+function siteUrl(){return 'https://promedia-records.vercel.app/';}
+function songUrl(song){return song && song.youtube ? 'https://www.youtube.com/watch?v='+song.youtube : siteUrl();}
+function openWhatsApp(message){const url='https://wa.me/?text='+encodeURIComponent(message); window.open(url,'_blank');}
+function shareSong(id, context=''){
+  const song=SONGS.find(s=>s.id===id)||SONS_SAFE();
+  let opener='I am listening to';
+  if(context==='wedding') opener='This beautiful wedding song is';
+  if(context==='worship') opener='This worship song can bless your heart:';
+  if(context==='gratitude') opener='This thanksgiving song is powerful:';
+  if(context==='healing') opener='Sending this song for strength and encouragement:';
+  const message=`${opener} "${song.title}" by ${song.artist} on Pro Media Records.\n\n${song.story}\n\nTheme: ${song.theme}\n\nWorship never sleeps. Listen here: ${songUrl(song)}\n\nExplore more songs: ${siteUrl()}`;
+  openWhatsApp(message);
+}
+function shareCurrentSong(){shareSong((SONS_SAFE()||SONGS[0]).id);}
+function shareEncouragement(){
+  const song=SONGS.find(s=>s.mood.includes('healing'))||SONGS.find(s=>s.mood.includes('hope'))||SONS_SAFE();
+  const message=`I thought this song might encourage you today.\n\n"${song.title}" by ${song.artist}\n\n${devotionalFor(song)}\n\n${song.theme}\n\nListen here: ${songUrl(song)}\n\nWorship never sleeps — Pro Media Records: ${siteUrl()}`;
+  openWhatsApp(message);
+}
+function shareDailyMinistration(){
+  const idx=dayNumber()%SONGS.length; const song=SONGS[idx];
+  const message=`Today's Ministration from Pro Media Records:\n\n${song.title} — ${song.artist}\n\n${song.theme}\n\n${devotionalFor(song)}\n\nListen here: ${songUrl(song)}\n\nWorship never sleeps: ${siteUrl()}`;
+  openWhatsApp(message);
+}
+function shareDedication(name, occ, msg, song){
+  const message=`A song dedication for ${name}:\n\n"${song.title}" by ${song.artist}\n\nOccasion: ${occ}\n\n${msg}\n\nMay this bless your heart. Listen here: ${songUrl(song)}\n\nPro Media Records: ${siteUrl()}`;
+  openWhatsApp(message);
+}
+
 function renderGrids(){document.getElementById('musicGrid').innerHTML=SONGS.map(songCard).join('');document.getElementById('artistGrid').innerHTML=artists.map(a=>`<div onclick="openArtist('${a.name.replace(/'/g,"\\'")}')" class="card cursor-pointer"><img src="${a.image}" class="w-full h-64 object-cover"/><div class="p-5"><p class="orange text-xs uppercase tracking-widest font-black">Artist</p><h3 class="text-2xl font-black mt-2">${a.name}</h3><p class="text-gray-400 text-sm mt-3">${SONGS.filter(s=>s.artist===a.name).length} song(s) in Holy Fire OS</p></div></div>`).join('');}
 function openArtist(name){const a=artists.find(x=>x.name===name);const songs=SONGS.filter(s=>s.artist===name);document.getElementById('homeView').classList.add('hidden');document.getElementById('artistProfile').classList.remove('hidden');document.getElementById('profileImg').src=a.image;document.getElementById('profileName').textContent=a.name;document.getElementById('profileBio').textContent=a.bio;document.getElementById('profileSongTitle').textContent=a.name+' Songs';document.getElementById('profileSongs').innerHTML=songs.map(songCard).join('');window.scrollTo({top:0,behavior:'smooth'});}
 function todayIndex(){const now=new Date();const seed=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);return seed%SONGS.length;}
-function renderMinistration(song){document.getElementById('osSongImage').src=song.image;document.getElementById('osSongTitle').textContent=song.title;document.getElementById('osSongArtist').textContent=song.artist;document.getElementById('osSongStory').textContent=song.story;document.getElementById('osSongScripture').textContent=song.theme;document.getElementById('osSongMood').textContent=song.mood.split(' ').map(w=>w[0].toUpperCase()+w.slice(1)).join(' • ');document.getElementById('osYouTubeBtn').href=song.youtube?'https://www.youtube.com/watch?v='+song.youtube:'https://www.youtube.com/@promediarecordsinternational';document.getElementById('osPlayBtn').onclick=()=>selectTrack(song.id,true);}
+function renderMinistration(song){document.getElementById('osSongImage').src=song.image;document.getElementById('osSongTitle').textContent=song.title;document.getElementById('osSongArtist').textContent=song.artist;document.getElementById('osSongStory').textContent=song.story;document.getElementById('osSongScripture').textContent=song.theme;document.getElementById('osSongMood').textContent=song.mood.split(' ').map(w=>w[0].toUpperCase()+w.slice(1)).join(' • ');document.getElementById('osYouTubeBtn').href=song.youtube?'https://www.youtube.com/watch?v='+song.youtube:'https://www.youtube.com/@promediarecordsinternational';document.getElementById('osPlayBtn').onclick=()=>selectTrack(song.id,true);const sb=document.getElementById('osShareBtn');if(sb)sb.onclick=()=>shareSong(song.id);const eb=document.getElementById('osEncourageBtn');if(eb)eb.onclick=()=>shareSong(song.id,'healing');}
 function pmrStartAutoMinistry(){renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;clearInterval(flowTimer);flowTimer=setInterval(()=>{renderMinistration(SONGS[flowIndex%SONGS.length]);selectTrack(SONGS[flowIndex%SONGS.length].id,false);flowIndex++;},12000);document.getElementById('autonomous').scrollIntoView({behavior:'smooth'});}
 function pmrRecommendMood(mood, ev){document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));if(ev&&ev.target)ev.target.classList.add('active');const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];renderMinistration(song);selectTrack(song.id,false);document.getElementById('osRecommendation').innerHTML=`<p class="orange text-xs uppercase tracking-widest font-black">Recommended Song</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 mt-3">${song.story}</p><button class="brand-bg px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase text-black mt-4" onclick="selectTrack('${song.id}', true)">Play Recommendation</button>`;}
 
@@ -433,10 +488,11 @@ function renderDaily(random=false){
   document.getElementById('dailyScripture').textContent=song.theme;
   document.getElementById('dailyReflection').textContent=devotionalFor(song);
   document.getElementById('dailyPlay').onclick=()=>selectTrack(song.id,true);
+  const ds=document.getElementById('dailyShare'); if(ds) ds.onclick=()=>shareDailyMinistration();
 }
 function renderWeekly(){
   const song=SONGS[weekNumber()%SONGS.length];
-  document.getElementById('weekImage').src=song.image;document.getElementById('weekTitle').textContent=song.title;document.getElementById('weekArtist').textContent=song.artist;document.getElementById('weekLine').textContent=song.story;document.getElementById('weekPlay').onclick=()=>selectTrack(song.id,true);
+  document.getElementById('weekImage').src=song.image;document.getElementById('weekTitle').textContent=song.title;document.getElementById('weekArtist').textContent=song.artist;document.getElementById('weekLine').textContent=song.story;document.getElementById('weekPlay').onclick=()=>selectTrack(song.id,true);const ws=document.getElementById('weekShare'); if(ws) ws.onclick=()=>shareSong(song.id);
 }
 function renderWisdom(){document.getElementById('wisdomQuote').textContent=WISDOM_QUOTES[Math.floor(Math.random()*WISDOM_QUOTES.length)];document.getElementById('hiddenTruthQuote').textContent=HIDDEN_QUOTES[Math.floor(Math.random()*HIDDEN_QUOTES.length)];}
 function renderWorld(){
@@ -452,12 +508,12 @@ function askHolyFire(){
   else mood='healing';
   const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];
   const reason=devotionalFor(song);
-  document.getElementById('askHolyResult').innerHTML=`<p class="orange tracking-[0.25em] text-xs uppercase font-black">Holy Fire Recommends</p><h3 class="text-3xl md:text-4xl font-black mt-5">${song.title}</h3><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 leading-relaxed mt-5">${reason}</p><p class="orange font-black tracking-widest uppercase text-xs mt-5">${song.theme}</p><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5">Play Recommendation</button>`;
+  document.getElementById('askHolyResult').innerHTML=`<p class="orange tracking-[0.25em] text-xs uppercase font-black">Holy Fire Recommends</p><h3 class="text-3xl md:text-4xl font-black mt-5">${song.title}</h3><p class="text-gray-400 mt-1">${song.artist}</p><p class="text-gray-300 leading-relaxed mt-5">${reason}</p><p class="orange font-black tracking-widest uppercase text-xs mt-5">${song.theme}</p><div class="flex flex-wrap gap-3 mt-5"><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Recommendation</button><button onclick="shareSong('${song.id}')" class="btn">Share Recommendation</button></div>`;
 }
 function submitDedication(){
   const name=document.getElementById('dedName').value||'Friend'; const occ=document.getElementById('dedOccasion').value; const msg=document.getElementById('dedMessage').value||'A special dedication request.';
   let mood=occ==='Wedding'?'love':occ==='Thanksgiving'?'gratitude':occ==='Healing'?'healing':occ==='Prayer'?'deeper':'promise'; const song=SONGS.find(s=>s.mood.includes(mood))||SONGS[0];
-  document.getElementById('dedResult').innerHTML=`<div class="mini-card"><p class="orange text-xs uppercase tracking-widest font-black">Dedication Created</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">Recommended for ${occ}</p><p class="text-gray-300 mt-3">${name}, this dedication has been matched with a song from Pro Media Records. ${msg}</p><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-4">Play Dedication Song</button></div>`;
+  document.getElementById('dedResult').innerHTML=`<div class="mini-card"><p class="orange text-xs uppercase tracking-widest font-black">Dedication Created</p><h4 class="text-2xl font-black mt-2">${song.title}</h4><p class="text-gray-400 mt-1">Recommended for ${occ}</p><p class="text-gray-300 mt-3">${name}, this dedication has been matched with a song from Pro Media Records. ${msg}</p><div class="flex flex-wrap gap-3 mt-4"><button onclick="selectTrack('${song.id}', true)" class="brand-bg text-black px-5 py-3 rounded-lg font-black text-xs tracking-widest uppercase">Play Dedication Song</button><button onclick="shareDedication('${name.replace(/'/g,"\\'")}','${occ}','${msg.replace(/'/g,"\\'")}',SONGS.find(s=>s.id==='${song.id}'))" class="btn">Share Dedication</button></div></div>`;
 }
 
 document.addEventListener('DOMContentLoaded',()=>{renderGrids();flowIndex=todayIndex();renderMinistration(SONGS[flowIndex]);selectTrack(SONGS[0].id,false);renderDaily(false);renderWeekly();renderWisdom();renderWorld();setInterval(renderWorld,5000);});
