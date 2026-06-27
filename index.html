@@ -7,16 +7,23 @@
   <meta name="description" content="Pro Media Records is an autonomous gospel and Afro-fusion music experience built around songs that minister continuously." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html{scroll-behavior:smooth}body{background:#080808;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden;padding-bottom:92px}.orange{color:#ff4e00}.brand-bg{background:#ff4e00}.card{background:#161616;border:1px solid #2a2a2a;border-radius:20px;overflow:hidden;transition:.25s ease}.card:hover{border-color:#ff4e00;transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.35)}.active-card{border-color:#ff4e00!important;box-shadow:0 0 0 2px rgba(255,78,0,.35),0 0 35px rgba(255,78,0,.2)}.btn{border:1px solid #333;padding:10px 14px;border-radius:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.2s}.btn:hover{border-color:#ff4e00;color:#ff4e00}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.marquee{animation:marquee 24s linear infinite}.glow{box-shadow:0 0 60px rgba(255,78,0,.14)}.os-panel{background:linear-gradient(135deg,#111,#1b100b 55%,#090909);border:1px solid rgba(255,78,0,.35);border-radius:28px}.os-pill{display:inline-flex;border:1px solid rgba(255,78,0,.45);background:rgba(255,78,0,.11);color:#ff7b39;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.mood-btn{border:1px solid #333;background:#111;color:#ddd;border-radius:999px;padding:11px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.mood-btn:hover,.mood-btn.active{background:#ff4e00;color:#050505;border-color:#ff4e00}.mini-card{background:#111;border:1px solid #252525;border-radius:18px;padding:18px}.now-img{width:100%;height:320px;object-fit:cover;border-radius:20px;border:1px solid #252525}.pmr-install-bar{position:fixed;left:14px;right:14px;bottom:86px;z-index:9999;background:linear-gradient(135deg,#0b0b0b,#171717);border:1px solid rgba(255,78,0,.55);box-shadow:0 18px 55px rgba(0,0,0,.65),0 0 24px rgba(255,78,0,.18);border-radius:18px;padding:12px 14px;display:none;align-items:center;gap:12px}.pmr-install-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#000;border:1px solid rgba(255,78,0,.45);flex-shrink:0}@media(max-width:520px){.now-img{height:240px}.pmr-install-bar{left:10px;right:10px;bottom:80px;padding:10px}}
+    html{scroll-behavior:smooth}body{background:#070707;color:#F7EEDC;font-family:Arial,sans-serif;overflow-x:hidden;padding-bottom:92px}.orange{color:#D6A84F}.brand-bg{background:#D6A84F}.card{background:#141414;border:1px solid #2A2418;border-radius:20px;overflow:hidden;transition:.25s ease}.card:hover{border-color:#D6A84F;transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.35)}.active-card{border-color:#D6A84F!important;box-shadow:0 0 0 2px rgba(255,78,0,.35),0 0 35px rgba(255,78,0,.2)}.btn{border:1px solid #3A2F1C;padding:10px 14px;border-radius:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.2s}.btn:hover{border-color:#D6A84F;color:#D6A84F}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.marquee{animation:marquee 24s linear infinite}.glow{box-shadow:0 0 60px rgba(255,78,0,.14)}.os-panel{background:linear-gradient(135deg,#141414,#17120A 55%,#070707);border:1px solid rgba(255,78,0,.35);border-radius:28px}.os-pill{display:inline-flex;border:1px solid rgba(255,78,0,.45);background:rgba(255,78,0,.11);color:#F1D99A;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.mood-btn{border:1px solid #3A2F1C;background:#141414;color:#E8DDC4;border-radius:999px;padding:11px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.mood-btn:hover,.mood-btn.active{background:#D6A84F;color:#070707;border-color:#D6A84F}.mini-card{background:#141414;border:1px solid #2A2418;border-radius:18px;padding:18px}.now-img{width:100%;height:320px;object-fit:cover;border-radius:20px;border:1px solid #2A2418}.pmr-install-bar{position:fixed;left:14px;right:14px;bottom:86px;z-index:9999;background:linear-gradient(135deg,#0B0B0B,#141414);border:1px solid rgba(255,78,0,.55);box-shadow:0 18px 55px rgba(0,0,0,.65),0 0 24px rgba(255,78,0,.18);border-radius:18px;padding:12px 14px;display:none;align-items:center;gap:12px}.pmr-install-icon{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#070707;border:1px solid rgba(255,78,0,.45);flex-shrink:0}@media(max-width:520px){.now-img{height:240px}.pmr-install-bar{left:10px;right:10px;bottom:80px;padding:10px}}
   
-    .living-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}.living-card{background:linear-gradient(135deg,#111,#151515);border:1px solid #292929;border-radius:24px;padding:24px;position:relative;overflow:hidden}.living-card:before{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,78,0,.09)}.living-card>*{position:relative}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}.holy-input,.holy-select,.holy-textarea{width:100%;background:#0b0b0b;border:1px solid #303030;border-radius:14px;padding:14px 15px;color:#fff;outline:none}.holy-input:focus,.holy-select:focus,.holy-textarea:focus{border-color:#ff4e00;box-shadow:0 0 0 3px rgba(255,78,0,.12)}.holy-textarea{min-height:120px;resize:vertical}.live-dot{width:8px;height:8px;border-radius:50%;background:#ff4e00;display:inline-block;box-shadow:0 0 18px rgba(255,78,0,.8);animation:pulsePMR 1.5s infinite}@keyframes pulsePMR{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}.world-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #252525;padding:12px 0}.world-row:last-child{border-bottom:0}.quote-mark{font-size:56px;line-height:0;color:#ff4e00;opacity:.55}.devotional-text{font-size:16px;line-height:1.85;color:#d6d6d6}.holy-chip{display:inline-flex;border:1px solid rgba(255,78,0,.32);background:rgba(255,78,0,.09);border-radius:999px;padding:8px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:#ff9b68}@media(max-width:900px){.living-grid{grid-template-columns:1fr}.span-7,.span-5,.span-4,.span-6,.span-12{grid-column:span 1}}
+    .living-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}.living-card{background:linear-gradient(135deg,#141414,#151515);border:1px solid #2A2418;border-radius:24px;padding:24px;position:relative;overflow:hidden}.living-card:before{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,78,0,.09)}.living-card>*{position:relative}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}.holy-input,.holy-select,.holy-textarea{width:100%;background:#0B0B0B;border:1px solid #3A2F1C;border-radius:14px;padding:14px 15px;color:#F7EEDC;outline:none}.holy-input:focus,.holy-select:focus,.holy-textarea:focus{border-color:#D6A84F;box-shadow:0 0 0 3px rgba(255,78,0,.12)}.holy-textarea{min-height:120px;resize:vertical}.live-dot{width:8px;height:8px;border-radius:50%;background:#D6A84F;display:inline-block;box-shadow:0 0 18px rgba(255,78,0,.8);animation:pulsePMR 1.5s infinite}@keyframes pulsePMR{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.25)}}.world-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2A2418;padding:12px 0}.world-row:last-child{border-bottom:0}.quote-mark{font-size:56px;line-height:0;color:#D6A84F;opacity:.55}.devotional-text{font-size:16px;line-height:1.85;color:#D8CFBD}.holy-chip{display:inline-flex;border:1px solid rgba(255,78,0,.32);background:rgba(255,78,0,.09);border-radius:999px;padding:8px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:#F1D99A}@media(max-width:900px){.living-grid{grid-template-columns:1fr}.span-7,.span-5,.span-4,.span-6,.span-12{grid-column:span 1}}
+
+  
+
+/* PREMIUM GOSPEL COLOR UPGRADE */
+:root{--pmr-bg:#070707;--pmr-card:#141414;--pmr-gold:#D6A84F;--pmr-gold2:#F1D99A;--pmr-cream:#F7EEDC;--pmr-burgundy:#6B102A;--pmr-muted:#CFCFCF;}
+body{background:radial-gradient(circle at 15% 0%,rgba(214,168,79,.10),transparent 30%),radial-gradient(circle at 85% 10%,rgba(107,16,42,.18),transparent 30%),#070707!important;color:var(--pmr-cream)!important;}
+.orange{color:var(--pmr-gold2)!important}.brand-bg{background:linear-gradient(135deg,var(--pmr-gold),var(--pmr-gold2))!important;color:#070707!important}.card,.mini-card,.living-card{background:linear-gradient(135deg,#141414,#0B0B0B)!important;border-color:rgba(214,168,79,.20)!important}.card:hover{border-color:var(--pmr-gold)!important;box-shadow:0 18px 45px rgba(214,168,79,.13)!important}.os-panel{background:linear-gradient(135deg,#0B0B0B,#17120A 55%,#070707)!important;border-color:rgba(214,168,79,.38)!important}.os-pill,.holy-chip{border-color:rgba(214,168,79,.45)!important;background:rgba(214,168,79,.12)!important;color:var(--pmr-gold2)!important}.btn{border-color:rgba(214,168,79,.25)!important;color:var(--pmr-cream)!important}.btn:hover{border-color:var(--pmr-gold)!important;color:var(--pmr-gold2)!important}.mood-btn:hover,.mood-btn.active{background:linear-gradient(135deg,var(--pmr-gold),var(--pmr-gold2))!important;color:#070707!important;border-color:var(--pmr-gold)!important}.live-dot{background:var(--pmr-gold)!important;box-shadow:0 0 18px rgba(214,168,79,.85)!important}.quote-mark{color:var(--pmr-gold)!important}.holy-input,.holy-select,.holy-textarea{background:#0B0B0B!important;border-color:rgba(214,168,79,.22)!important;color:var(--pmr-cream)!important}.holy-input:focus,.holy-select:focus,.holy-textarea:focus{border-color:var(--pmr-gold)!important;box-shadow:0 0 0 3px rgba(214,168,79,.12)!important}header{background:rgba(7,7,7,.88)!important;border-bottom-color:rgba(214,168,79,.18)!important}.bg-black\/85{background:rgba(7,7,7,.88)!important}.border-\[\#222\]{border-color:rgba(214,168,79,.15)!important}.text-gray-400{color:#CFCFCF!important}.text-gray-300{color:#D8CFBD!important}.text-gray-500{color:#AFAFAF!important}.bg-\[\#111\]{background:#141414!important}.bg-\[\#222\]{background:#222018!important}.border-\[\#333\]{border-color:#3A2F1C!important}.border-\[\#252525\]{border-color:#2A2418!important}.bg-\[\#0d0d0d\]{background:#111111!important}.bg-\[\#0B0B0B\]{background:#0B0B0B!important}.active-card{border-color:var(--pmr-gold)!important;box-shadow:0 0 0 2px rgba(214,168,79,.35),0 0 35px rgba(214,168,79,.18)!important}.pmr-install-bar{border-color:rgba(214,168,79,.55)!important;box-shadow:0 18px 55px rgba(0,0,0,.65),0 0 24px rgba(214,168,79,.18)!important}.pmr-install-icon{border-color:rgba(214,168,79,.45)!important}.marquee{color:#070707!important}
 
   </style>
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#ff4e00">
+  <meta name="theme-color" content="#D6A84F">
 </head>
 <body>
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur border-b border-[#222] px-5 md:px-10 py-5 flex items-center justify-between">
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur border-b border-[#222018] px-5 md:px-10 py-5 flex items-center justify-between">
   <div onclick="showHome()" class="cursor-pointer">
     <h1 class="text-2xl md:text-4xl font-black tracking-widest orange">PRO MEDIA RECORDS</h1>
     <p class="text-gray-400 text-[10px] md:text-xs tracking-[0.35em] mt-1">WHERE SOUND MEETS SPIRIT</p>
@@ -41,8 +48,8 @@
       <p class="text-gray-400 text-lg mt-6 leading-relaxed max-w-xl">An autonomous gospel and Afro-fusion music experience built around songs, stories, scripture reflections, and daily ministration.</p>
       <div class="flex flex-wrap gap-4 mt-9">
         <button onclick="pmrStartAutoMinistry()" class="brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">▶ Start Auto Ministry</button>
-        <a href="#daily" class="border border-[#333] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Today's Devotional</a>
-        <a href="#music" class="border border-[#333] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Explore Music</a>
+        <a href="#daily" class="border border-[#3A2F1C] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Today's Devotional</a>
+        <a href="#music" class="border border-[#3A2F1C] px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase">Explore Music</a>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -82,7 +89,7 @@
           </div>
           <div class="mt-8"><button onclick="pmrStartAutoMinistry()" class="brand-bg px-7 py-4 rounded-lg font-black text-xs tracking-widest uppercase text-black">Start 24/7 Rotation</button></div>
         </div>
-        <div class="bg-[#0d0d0d] border border-[#252525] rounded-[28px] p-5">
+        <div class="bg-[#141414111] border border-[#2A2418] rounded-[28px] p-5">
           <p class="orange tracking-[0.25em] text-xs uppercase font-black">Now Ministering</p>
           <img id="osSongImage" class="now-img mt-5" alt="Featured song artwork">
           <h3 id="osSongTitle" class="text-3xl md:text-4xl font-black mt-5">Loading Song...</h3>
@@ -121,7 +128,7 @@
       </div>
       <div class="living-card span-5">
         <p class="orange tracking-[0.25em] text-xs uppercase font-black">Song of the Week</p>
-        <img id="weekImage" class="w-full h-56 object-cover rounded-2xl mt-5 border border-[#252525]" alt="Song of the week">
+        <img id="weekImage" class="w-full h-56 object-cover rounded-2xl mt-5 border border-[#2A2418]" alt="Song of the week">
         <h3 id="weekTitle" class="text-3xl font-black mt-5"></h3>
         <p id="weekArtist" class="text-gray-400 mt-1"></p>
         <p id="weekLine" class="text-gray-300 mt-4 leading-relaxed"></p>
@@ -173,7 +180,7 @@
           <p class="text-gray-300 text-lg leading-relaxed mt-5">Let visitors connect your songs to real life: weddings, birthdays, thanksgiving, encouragement, healing, and special moments.</p>
           <div class="grid sm:grid-cols-2 gap-4 mt-8"><div class="mini-card"><h3 class="font-black">Wedding</h3><p class="text-gray-400 text-sm mt-2">Perfect for Shawn and Sharon.</p></div><div class="mini-card"><h3 class="font-black">Thanksgiving</h3><p class="text-gray-400 text-sm mt-2">Perfect for Stronger and Wiser.</p></div><div class="mini-card"><h3 class="font-black">Worship</h3><p class="text-gray-400 text-sm mt-2">Perfect for Take Me Deeper.</p></div><div class="mini-card"><h3 class="font-black">Healing</h3><p class="text-gray-400 text-sm mt-2">Perfect for Message.</p></div></div>
         </div>
-        <div class="bg-[#0d0d0d] border border-[#252525] rounded-[28px] p-5">
+        <div class="bg-[#141414111] border border-[#2A2418] rounded-[28px] p-5">
           <input id="dedName" class="holy-input" placeholder="Your name">
           <select id="dedOccasion" class="holy-select mt-4"><option>Wedding</option><option>Birthday</option><option>Thanksgiving</option><option>Encouragement</option><option>Healing</option><option>Prayer</option></select>
           <textarea id="dedMessage" class="holy-textarea mt-4" placeholder="Who are you dedicating this song to and why?"></textarea>
@@ -241,29 +248,29 @@
   <section class="py-16"><p class="orange tracking-[0.35em] text-xs uppercase mb-3">Artist Songs</p><h2 id="profileSongTitle" class="text-4xl md:text-5xl font-black mb-10"></h2><div id="profileSongs" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div></section>
 </div>
 
-<div class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-[#222] p-3 flex items-center gap-4 z-50">
-  <div class="w-12 h-12 bg-[#222] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
+<div class="fixed bottom-0 left-0 right-0 bg-[#141414] border-t border-[#222018] p-3 flex items-center gap-4 z-50">
+  <div class="w-12 h-12 bg-[#222018] rounded overflow-hidden"><img id="miniImg" class="w-full h-full object-cover" /></div>
   <div class="flex-1 overflow-hidden"><div id="nowTitle" class="font-bold truncate">Select a track</div><div id="nowArtist" class="text-gray-400 text-sm truncate">Pro Media Records</div></div>
   <button type="button" onclick="openCurrent()" class="brand-bg px-5 py-3 rounded-full font-bold text-black">▶</button>
-  <button type="button" onclick="shareCurrentSong()" class="hidden sm:inline-flex border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Share</button>
-  <button type="button" onclick="toggleAutoPlayMode()" id="autoModeBtn" class="hidden md:inline-flex border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Auto: ON</button>
+  <button type="button" onclick="shareCurrentSong()" class="hidden sm:inline-flex border border-[#3A2F1C] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Share</button>
+  <button type="button" onclick="toggleAutoPlayMode()" id="autoModeBtn" class="hidden md:inline-flex border border-[#3A2F1C] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300">Auto: ON</button>
 </div>
 
 <div id="modal" class="hidden fixed inset-0 bg-black/95 z-[9999] p-5 flex items-center justify-center">
-  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222] px-4 py-2 rounded z-[10000]">← Back</button>
+  <button onclick="closeVideo()" class="absolute top-5 left-5 bg-[#222018] px-4 py-2 rounded z-[10000]">← Back</button>
   <a id="youtubeDirect" href="#" target="_blank" class="absolute top-5 right-5 brand-bg text-black px-4 py-2 rounded font-black text-xs tracking-widest uppercase z-[10000]">Open YouTube</a>
   <div class="w-[95%] md:w-[80%] flex flex-col gap-4 items-stretch">
-    <div id="djBox" class="rounded-2xl border border-[#333] bg-[#111] p-4 md:p-5 shadow-2xl">
+    <div id="djBox" class="rounded-2xl border border-[#3A2F1C] bg-[#141414] p-4 md:p-5 shadow-2xl">
       <div class="flex flex-col md:flex-row md:items-center gap-3 justify-between">
         <div>
           <p class="orange tracking-[0.25em] text-[10px] md:text-xs uppercase font-black">🔥 Holy Fire AI Radio DJ</p>
           <h3 id="djLine" class="text-white text-lg md:text-2xl font-black mt-2">Welcome back to Holy Fire Radio.</h3>
           <p id="djSubLine" class="text-gray-400 text-sm md:text-base mt-1">The DJ introduces each song before it plays.</p>
         </div>
-        <button id="djVoiceBtn" onclick="toggleDjVoice()" class="border border-[#333] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300 whitespace-nowrap">DJ Voice: ON</button>
+        <button id="djVoiceBtn" onclick="toggleDjVoice()" class="border border-[#3A2F1C] px-4 py-3 rounded-full font-bold text-xs uppercase tracking-widest text-gray-300 whitespace-nowrap">DJ Voice: ON</button>
       </div>
     </div>
-    <div id="player" class="w-full h-[56vh] md:h-[68vh] rounded-xl overflow-hidden bg-[#222]"></div>
+    <div id="player" class="w-full h-[56vh] md:h-[68vh] rounded-xl overflow-hidden bg-[#222018]"></div>
   </div>
 </div>
 
@@ -395,7 +402,7 @@ function ensurePlayer(videoId){
 function showPlayerFallback(videoId){
   const holder=document.getElementById('player');
   if(!holder) return;
-  holder.innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#111] rounded-xl border border-[#333]"><p class="text-xl font-black orange">YouTube blocked the embedded player.</p><p class="text-gray-400 mt-3 max-w-md">Tap Open YouTube to play this song. On Vercel, most videos should play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/watch?v=${videoId}" target="_blank">Open YouTube</a></div>`;
+  holder.innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#141414] rounded-xl border border-[#3A2F1C]"><p class="text-xl font-black orange">YouTube blocked the embedded player.</p><p class="text-gray-400 mt-3 max-w-md">Tap Open YouTube to play this song. On Vercel, most videos should play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/watch?v=${videoId}" target="_blank">Open YouTube</a></div>`;
 }
 function loadVideo(videoId){
   if(ytPlayer && ytPlayer.loadVideoById){
@@ -408,7 +415,7 @@ function openCurrent(){
   document.getElementById('modal').classList.remove('hidden');
   if(!s.youtube){
     document.getElementById('youtubeDirect').href='https://www.youtube.com/@promediarecordsinternational';
-    document.getElementById('player').innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#111] rounded-xl border border-[#333]"><p class="text-2xl font-black orange">${s.title}</p><p class="text-gray-400 mt-2">${s.artist}</p><p class="text-gray-300 mt-5 max-w-lg">This Holy Spell song has been restored in the catalog. Add the exact YouTube link later and it will play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/@promediarecordsinternational" target="_blank">Open Pro Media Records YouTube</a></div>`;
+    document.getElementById('player').innerHTML=`<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-[#141414] rounded-xl border border-[#3A2F1C]"><p class="text-2xl font-black orange">${s.title}</p><p class="text-gray-400 mt-2">${s.artist}</p><p class="text-gray-300 mt-5 max-w-lg">This Holy Spell song has been restored in the catalog. Add the exact YouTube link later and it will play inside the site.</p><a class="brand-bg text-black px-6 py-3 rounded-lg font-black text-xs tracking-widest uppercase mt-5" href="https://www.youtube.com/@promediarecordsinternational" target="_blank">Open Pro Media Records YouTube</a></div>`;
     return;
   }
   document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube;
