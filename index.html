@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pro Media Records | Excellence in Sound</title>
 <meta name="description" content="Pro Media Records creates music, soundtracks, artist development, distribution and sonic branding for artists, filmmakers, ministries and brands." />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23d4b16f'/%3E%3Cstop offset='1' stop-color='%23b78332'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='96' fill='%2309212b'/%3E%3Ctext x='256' y='142' text-anchor='middle' font-size='72' fill='url(%23g)' font-family='Georgia'%3E%E2%99%9B%3C/text%3E%3Ctext x='256' y='336' text-anchor='middle' font-size='178' font-weight='700' fill='url(%23g)' font-family='Georgia'%3EPM%3C/text%3E%3Cpath d='M122 386h268' stroke='%23d4b16f' stroke-width='10' stroke-linecap='round' opacity='.9'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#09212b" />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 :root{--bg:#f7f1e7;--cream:#fffaf2;--card:#fffdf8;--ink:#211b15;--muted:#6c6257;--gold:#b78332;--gold2:#d4b16f;--line:#e5d6bf;--deep:#09212b;--wine:#701c28;--shadow:0 22px 60px rgba(84,58,24,.12)}
@@ -134,10 +137,10 @@ const SONGS=[
 {id:'promise',title:'Promise',artist:'Ziyana Eya',youtube:'E29YQ8zatnI',image:'https://img.youtube.com/vi/E29YQ8zatnI/hqdefault.jpg',story:'A song for anyone holding on to what God has spoken.'},
 {id:'message',title:'Message',artist:'Zik Blue',youtube:'5CiEcP3xfzk',image:'https://img.youtube.com/vi/5CiEcP3xfzk/hqdefault.jpg',story:'A deeply emotional song written from real experience.'}
 ];
-let current=SONGS[0], auto=true, firstVoice=true, queue=[], rotateTimer=null;
+let current=SONGS[0], auto=true, firstVoice=true, queue=[], rotateTimer=null, endWatch=null, player=null, playerReady=false, playToken=0;
 const FALLBACK_DURATIONS={
-  'fSVPa7Bpsao':245,'0lB9xV77wmQ':300,'rO465paoc-s':190,'8ReaZcQYpbA':260,
-  'bEHi5onUR8w':260,'PZYLwQu_eP4':250,'gK-YkzzjHnE':240,'E29YQ8zatnI':260,'5CiEcP3xfzk':260
+  'fSVPa7Bpsao':245,'0lB9xV77wmQ':300,'rO465paoc-s':189,'8ReaZcQYpbA':260,
+  'bEHi5onUR8w':260,'PZYLwQu_eP4':248,'gK-YkzzjHnE':240,'E29YQ8zatnI':260,'5CiEcP3xfzk':260
 };
 function qs(id){return document.getElementById(id)}
 function setCurrent(s){
@@ -154,27 +157,74 @@ function buildQueue(){
   for(let i=ids.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}
   queue=ids;
 }
-function scheduleNext(){
+function clearRotation(){
   if(rotateTimer) clearTimeout(rotateTimer);
-  const seconds=FALLBACK_DURATIONS[current.youtube]||270;
+  if(endWatch) clearInterval(endWatch);
+  rotateTimer=null; endWatch=null;
+}
+function scheduleFallback(myToken){
+  clearRotation();
+  const seconds=FALLBACK_DURATIONS[current.youtube]||255;
+  // Backup rotation: moves to the next song even when YouTube refuses to send an "ended" event.
   rotateTimer=setTimeout(()=>{
-    if(auto && qs('modal') && qs('modal').classList.contains('show')) nextSong();
-  }, (seconds+4)*1000);
+    if(myToken===playToken && auto && qs('modal') && qs('modal').classList.contains('show')) nextSong();
+  }, Math.max(60, seconds+1)*1000);
+  // Extra watcher for the YouTube API when it is available.
+  endWatch=setInterval(()=>{
+    try{
+      if(myToken!==playToken || !auto || !player || !player.getCurrentTime || !player.getDuration) return;
+      const d=player.getDuration(), t=player.getCurrentTime();
+      if(d && t && d-t<1.5){ nextSong(); }
+    }catch(e){}
+  },1500);
+}
+function destroyPlayer(){
+  try{ if(player && player.destroy) player.destroy(); }catch(e){}
+  player=null; playerReady=false;
 }
 function loadVideo(){
   const holder=qs('player');
   if(!holder) return;
-  holder.innerHTML=`<iframe src="https://www.youtube.com/embed/${current.youtube}?autoplay=1&rel=0&playsinline=1&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-  scheduleNext();
+  const myToken=++playToken;
+  clearRotation();
+  destroyPlayer();
+  holder.innerHTML='<div id="ytPlayer_'+myToken+'" style="width:100%;height:100%"></div>';
+  const useApi = !!(window.YT && window.YT.Player);
+  if(useApi){
+    try{
+      player=new YT.Player('ytPlayer_'+myToken,{
+        videoId:current.youtube,
+        playerVars:{autoplay:1,playsinline:1,rel:0,modestbranding:1,controls:1,start:0},
+        events:{
+          onReady:function(e){ if(myToken!==playToken) return; playerReady=true; try{e.target.seekTo(0,true);e.target.playVideo();}catch(x){} scheduleFallback(myToken); },
+          onStateChange:function(e){ if(myToken!==playToken) return; if(e.data===YT.PlayerState.ENDED && auto) nextSong(); },
+          onError:function(){ if(myToken!==playToken) return; fallbackIframe(myToken); }
+        }
+      });
+      setTimeout(()=>{ if(myToken===playToken && !playerReady) fallbackIframe(myToken); },2500);
+    }catch(e){ fallbackIframe(myToken); }
+  }else{
+    fallbackIframe(myToken);
+    setTimeout(()=>{ if(myToken===playToken && window.YT && YT.Player){ loadVideo(); } },1200);
+  }
+}
+function fallbackIframe(myToken){
+  const holder=qs('player'); if(!holder || myToken!==playToken) return;
+  destroyPlayer();
+  holder.innerHTML=`<iframe key="${current.youtube}_${Date.now()}" src="https://www.youtube.com/embed/${current.youtube}?autoplay=1&start=0&rel=0&playsinline=1&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  scheduleFallback(myToken);
 }
 function playWithIntro(voice){
-  if(rotateTimer) clearTimeout(rotateTimer);
+  clearRotation();
   setCurrent(current);
+  const myToken=playToken+1;
   if(voice && 'speechSynthesis' in window){
+    let called=false;
+    const begin=()=>{ if(called) return; called=true; try{speechSynthesis.cancel()}catch(e){} loadVideo(); };
     let text=`Welcome back to Holy Fire Radio. Today's worship session begins with ${current.title} by ${current.artist}. May this song bless your heart.`;
-    let u=new SpeechSynthesisUtterance(text);u.rate=.92;u.onend=loadVideo;u.onerror=loadVideo;
-    try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){loadVideo();return}
-    setTimeout(()=>{try{speechSynthesis.cancel()}catch(e){} loadVideo()},9000);
+    let u=new SpeechSynthesisUtterance(text);u.rate=.92;u.onend=begin;u.onerror=begin;
+    try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){begin();return}
+    setTimeout(begin,9000);
   }else loadVideo();
 }
 function openCurrent(){
@@ -185,28 +235,31 @@ function openCurrent(){
 function playSong(id){
   const found=SONGS.find(s=>s.id===id)||SONGS[0];
   setCurrent(found);
+  buildQueue();
   openCurrent();
 }
 function nextSong(){
   if(!auto) return;
+  clearRotation();
   if(!queue.length) buildQueue();
   const next=SONGS.find(s=>s.id===queue.shift())||SONGS[0];
   setCurrent(next);
   playWithIntro(false);
 }
 function startRadio(){
-  buildQueue();
   setCurrent(SONGS[Math.floor(Math.random()*SONGS.length)]);
+  buildQueue();
   openCurrent();
 }
 function closeVideo(){
   if(qs('modal')) qs('modal').classList.remove('show');
-  if(rotateTimer) clearTimeout(rotateTimer);
+  clearRotation();
+  destroyPlayer();
   try{speechSynthesis.cancel()}catch(e){}
   if(qs('player')) qs('player').innerHTML='';
 }
-function toggleAuto(){auto=!auto;if(qs('autoBtn')) qs('autoBtn').textContent='Auto: '+(auto?'On':'Off'); if(auto && qs('modal') && qs('modal').classList.contains('show')) scheduleNext();}
-function onYouTubeIframeAPIReady(){}
+function toggleAuto(){auto=!auto;if(qs('autoBtn')) qs('autoBtn').textContent='Auto: '+(auto?'On':'Off'); if(auto && qs('modal') && qs('modal').classList.contains('show')) scheduleFallback(playToken);}
+function onYouTubeIframeAPIReady(){ if(qs('modal') && qs('modal').classList.contains('show') && !player) loadVideo(); }
 function site(){return 'https://promedia-records.vercel.app/'}
 function shareSong(id){let s=SONGS.find(x=>x.id===id)||current;window.open('https://wa.me/2349020165930?text='+encodeURIComponent(`Hello Pro Media Records, I am listening to "${s.title}" by ${s.artist}.\n\n${s.story}\n\nListen here: https://www.youtube.com/watch?v=${s.youtube}\n\nExplore more: ${site()}`),'_blank')}
 function shareCurrentSong(){shareSong(current.id)}
