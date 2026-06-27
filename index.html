@@ -134,100 +134,82 @@ const SONGS=[
 {id:'promise',title:'Promise',artist:'Ziyana Eya',youtube:'E29YQ8zatnI',image:'https://img.youtube.com/vi/E29YQ8zatnI/hqdefault.jpg',story:'A song for anyone holding on to what God has spoken.'},
 {id:'message',title:'Message',artist:'Zik Blue',youtube:'5CiEcP3xfzk',image:'https://img.youtube.com/vi/5CiEcP3xfzk/hqdefault.jpg',story:'A deeply emotional song written from real experience.'}
 ];
-let current=SONGS[0], player=null, auto=true, firstVoice=true, queue=[];
-function setCurrent(s){current=s;document.getElementById('miniImg').src=s.image;document.getElementById('nowTitle').textContent=s.title;document.getElementById('nowArtist').textContent=s.artist;document.getElementById('youtubeDirect').href='https://www.youtube.com/watch?v='+s.youtube}
-function playSong(id){setCurrent(SONGS.find(s=>s.id===id)||SONGS[0]);openCurrent()}
-function buildQueue(){let ids=SONGS.map(s=>s.id).filter(id=>id!==current.id);for(let i=ids.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}queue=ids}
-let rotateTimer=null, watchTimer=null, playerReady=false;
+let current=SONGS[0], auto=true, firstVoice=true, queue=[], rotateTimer=null;
 const FALLBACK_DURATIONS={
-  'fSVPa7Bpsao':240,'0lB9xV77wmQ':300,'rO465paoc-s':240,'8ReaZcQYpbA':260,
-  'bEHi5onUR8w':260,'PZYLwQu_eP4':248,'gK-YkzzjHnE':240,'E29YQ8zatnI':260,'5CiEcP3xfzk':260
+  'fSVPa7Bpsao':245,'0lB9xV77wmQ':300,'rO465paoc-s':190,'8ReaZcQYpbA':260,
+  'bEHi5onUR8w':260,'PZYLwQu_eP4':250,'gK-YkzzjHnE':240,'E29YQ8zatnI':260,'5CiEcP3xfzk':260
 };
-function clearRotationTimers(){
-  if(rotateTimer){clearTimeout(rotateTimer);rotateTimer=null}
-  if(watchTimer){clearInterval(watchTimer);watchTimer=null}
+function qs(id){return document.getElementById(id)}
+function setCurrent(s){
+  current=s||SONGS[0];
+  if(qs('miniImg')) qs('miniImg').src=current.image;
+  if(qs('nowTitle')) qs('nowTitle').textContent=current.title;
+  if(qs('nowArtist')) qs('nowArtist').textContent=current.artist;
+  if(qs('youtubeDirect')) qs('youtubeDirect').href='https://www.youtube.com/watch?v='+current.youtube;
+  if(qs('djLine')) qs('djLine').textContent=`Now ministering: ${current.title} by ${current.artist}.`;
+  if(qs('djSub')) qs('djSub').textContent=current.story;
+}
+function buildQueue(){
+  let ids=SONGS.map(s=>s.id).filter(id=>id!==current.id);
+  for(let i=ids.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}
+  queue=ids;
+}
+function scheduleNext(){
+  if(rotateTimer) clearTimeout(rotateTimer);
+  const seconds=FALLBACK_DURATIONS[current.youtube]||270;
+  rotateTimer=setTimeout(()=>{
+    if(auto && qs('modal') && qs('modal').classList.contains('show')) nextSong();
+  }, (seconds+4)*1000);
+}
+function loadVideo(){
+  const holder=qs('player');
+  if(!holder) return;
+  holder.innerHTML=`<iframe src="https://www.youtube.com/embed/${current.youtube}?autoplay=1&rel=0&playsinline=1&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  scheduleNext();
+}
+function playWithIntro(voice){
+  if(rotateTimer) clearTimeout(rotateTimer);
+  setCurrent(current);
+  if(voice && 'speechSynthesis' in window){
+    let text=`Welcome back to Holy Fire Radio. Today's worship session begins with ${current.title} by ${current.artist}. May this song bless your heart.`;
+    let u=new SpeechSynthesisUtterance(text);u.rate=.92;u.onend=loadVideo;u.onerror=loadVideo;
+    try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){loadVideo();return}
+    setTimeout(()=>{try{speechSynthesis.cancel()}catch(e){} loadVideo()},9000);
+  }else loadVideo();
+}
+function openCurrent(){
+  if(qs('modal')) qs('modal').classList.add('show');
+  playWithIntro(firstVoice);
+  firstVoice=false;
+}
+function playSong(id){
+  const found=SONGS.find(s=>s.id===id)||SONGS[0];
+  setCurrent(found);
+  openCurrent();
 }
 function nextSong(){
   if(!auto) return;
-  clearRotationTimers();
-  if(!queue.length)buildQueue();
-  setCurrent(SONGS.find(s=>s.id===queue.shift())||SONGS[0]);
+  if(!queue.length) buildQueue();
+  const next=SONGS.find(s=>s.id===queue.shift())||SONGS[0];
+  setCurrent(next);
   playWithIntro(false);
 }
-function startRadio(){buildQueue();setCurrent(SONGS[Math.floor(Math.random()*SONGS.length)]);openCurrent()}
-function openCurrent(){document.getElementById('modal').classList.add('show');playWithIntro(firstVoice);firstVoice=false}
-function playWithIntro(voice){
-  clearRotationTimers();
-  document.getElementById('djLine').textContent=`Now ministering: ${current.title} by ${current.artist}.`;
-  document.getElementById('djSub').textContent=current.story;
-  if(voice&&'speechSynthesis'in window){
-    let text=`Welcome back to Holy Fire Radio. Today's worship session begins with ${current.title} by ${current.artist}. May this song bless your heart.`;
-    let u=new SpeechSynthesisUtterance(text);u.rate=.92;u.onend=loadVideo;u.onerror=loadVideo;
-    speechSynthesis.cancel();speechSynthesis.speak(u);setTimeout(()=>{try{if(speechSynthesis.speaking)speechSynthesis.cancel()}catch(e){} loadVideo()},9000)
-  }else loadVideo()
+function startRadio(){
+  buildQueue();
+  setCurrent(SONGS[Math.floor(Math.random()*SONGS.length)]);
+  openCurrent();
 }
-function onYouTubeIframeAPIReady(){playerReady=true}
-function scheduleFallbackAdvance(){
-  clearTimeout(rotateTimer);
-  const seconds=FALLBACK_DURATIONS[current.youtube]||270;
-  rotateTimer=setTimeout(()=>{ if(auto && document.getElementById('modal').classList.contains('show')) nextSong(); }, (seconds+3)*1000);
+function closeVideo(){
+  if(qs('modal')) qs('modal').classList.remove('show');
+  if(rotateTimer) clearTimeout(rotateTimer);
+  try{speechSynthesis.cancel()}catch(e){}
+  if(qs('player')) qs('player').innerHTML='';
 }
-function startWatchdog(){
-  if(watchTimer) clearInterval(watchTimer);
-  watchTimer=setInterval(()=>{
-    if(!auto || !player || !player.getPlayerState) return;
-    try{
-      const state=player.getPlayerState();
-      const duration=player.getDuration ? player.getDuration() : 0;
-      const time=player.getCurrentTime ? player.getCurrentTime() : 0;
-      if(state===0 || (duration>10 && time>=duration-1.2)){ nextSong(); }
-    }catch(e){}
-  },1200);
-}
-function loadVideo(){
-  clearRotationTimers();
-  const holder=document.getElementById('player');
-  if(!holder) return;
-  if(window.YT && YT.Player){
-    try{
-      if(!player || !player.loadVideoById){
-        holder.innerHTML='';
-        player=new YT.Player('player',{
-          videoId:current.youtube,
-          playerVars:{autoplay:1,playsinline:1,rel:0,modestbranding:1,enablejsapi:1},
-          events:{
-            onReady:e=>{try{e.target.playVideo()}catch(err){} scheduleFallbackAdvance(); startWatchdog();},
-            onStateChange:e=>{if(e.data===YT.PlayerState.ENDED && auto) nextSong();},
-            onError:()=>fallback()
-          }
-        });
-      }else{
-        player.loadVideoById(current.youtube);
-        scheduleFallbackAdvance();
-        startWatchdog();
-      }
-      return;
-    }catch(e){fallback();return;}
-  }
-  fallback();
-  setTimeout(()=>{ if(window.YT && YT.Player && document.getElementById('modal').classList.contains('show')) loadVideo(); },1500);
-}
-function fallback(){
-  const holder=document.getElementById('player');
-  const origin=(location.protocol==='http:'||location.protocol==='https:') ? location.origin : '';
-  const originParam=origin ? `&origin=${encodeURIComponent(origin)}` : '';
-  holder.innerHTML=`<iframe src="https://www.youtube.com/embed/${current.youtube}?autoplay=1&rel=0&playsinline=1&modestbranding=1&enablejsapi=1${originParam}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin-when-cross-origin" allowfullscreen></iframe>`;
-  scheduleFallbackAdvance();
-}
-function closeVideo(){document.getElementById('modal').classList.remove('show');clearRotationTimers();try{if(player&&player.stopVideo)player.stopVideo()}catch(e){}try{speechSynthesis.cancel()}catch(e){}document.getElementById('player').innerHTML='';player=null}
-function toggleAuto(){auto=!auto;document.getElementById('autoBtn').textContent='Auto: '+(auto?'On':'Off')}
-function site(){return 'https://promedia-records.vercel.app/'}function shareSong(id){let s=SONGS.find(x=>x.id===id)||current;window.open('https://wa.me/2349020165930?text='+encodeURIComponent(`Hello Pro Media Records, I am listening to "${s.title}" by ${s.artist}.
-
-${s.story}
-
-Listen here: https://www.youtube.com/watch?v=${s.youtube}
-
-Explore more: ${site()}`),'_blank')}function shareCurrentSong(){shareSong(current.id)}
+function toggleAuto(){auto=!auto;if(qs('autoBtn')) qs('autoBtn').textContent='Auto: '+(auto?'On':'Off'); if(auto && qs('modal') && qs('modal').classList.contains('show')) scheduleNext();}
+function onYouTubeIframeAPIReady(){}
+function site(){return 'https://promedia-records.vercel.app/'}
+function shareSong(id){let s=SONGS.find(x=>x.id===id)||current;window.open('https://wa.me/2349020165930?text='+encodeURIComponent(`Hello Pro Media Records, I am listening to "${s.title}" by ${s.artist}.\n\n${s.story}\n\nListen here: https://www.youtube.com/watch?v=${s.youtube}\n\nExplore more: ${site()}`),'_blank')}
+function shareCurrentSong(){shareSong(current.id)}
 
 function subscribeUpdate(){let email=(document.getElementById('subscriberEmail')||{}).value||'';let subject='Pro Media Records Updates';let body=email?`Please add ${email} to the Pro Media Records update list.`:'Please add me to the Pro Media Records update list.';window.location.href='mailto:promediacenter4music@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body)}
 document.addEventListener('DOMContentLoaded',()=>setCurrent(SONGS[0]));
